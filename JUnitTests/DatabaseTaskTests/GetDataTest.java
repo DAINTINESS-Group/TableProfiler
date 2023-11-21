@@ -3,7 +3,7 @@ package DatabaseTaskTests;
 import org.junit.jupiter.api.Test;
 
 import DatabaseTasks.DatabaseConnection;
-import DatabaseTasks.GetData;
+import DatabaseTasks.DataManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,7 @@ public class GetDataTest {
     @Test
     void testFetchTableData() {
         try (Connection connection = DatabaseConnection.connect()) {
-            GetData dataFetcher = new GetData(connection);
+            DataManager dataFetcher = new DataManager(connection);
 
             // Replace "your_table_name" with the actual table name you want to test
             String tableName = "countries";

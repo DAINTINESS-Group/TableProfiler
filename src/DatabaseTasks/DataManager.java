@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetData {
+public class DataManager {
 
 	private Connection connection;
 
-    public GetData(Connection connection) {
+    public DataManager(Connection connection) {
         this.connection = connection;
     }
     
@@ -56,8 +56,8 @@ public class GetData {
         // Example: Fetch data from a SQL script
         String sqlScript = "SELECT table_name FROM tables a where a.TABLE_SCHEMA = 'information_schema'";
 
-        // Create an instance of GetData
-        GetData dataFetcher = new GetData(DatabaseConnection.connect());
+        // Create an instance of DataManager
+        DataManager dataFetcher = new DataManager(DatabaseConnection.connect());
 
         // Fetch data
         List<List<String>> resultData = dataFetcher.fetchData(sqlScript);
