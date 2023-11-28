@@ -1,74 +1,103 @@
 package DatabaseTasks;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.mysql.cj.jdbc.DatabaseMetaData;
+import Enums.MetadataType;
 public class DataManager {
+	
+	 
+	
+	private void printResultSet(ResultSet resultSet) throws SQLException {
+	    while (resultSet.next()) {
+	        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+	        int columnCount = resultSetMetaData.getColumnCount();
 
-	private Connection connection;
+	        for (int i = 1; i <= columnCount; i++) {
+	            String columnName = resultSetMetaData.getColumnName(i);
+	            String columnValue = resultSet.getString(i);
+	            System.out.println("\t" + columnName + ": " + columnValue);
+	        }
+	        System.out.println();
+	    }
+	}
+	
+	public ResultSet extractTableMetadata(Connection connection, MetadataType typeOfData, String tableName) {
+        try {
+        	
+        		DatabaseMetaData dmd = (DatabaseMetaData) connection.getMetaData();
+        		switch (typeOfData) {
+                case TABLES:
+                    System.out.println("Tables Metadata:");
+                    ResultSet tablesResultSet = dmd.getTables(null, null, tableName, new String[]{"TABLE"});
+                    //printResultSet(tablesResultSet);
+                    return tablesResultSet;
+                    
 
-    public DataManager(Connection connection) {
-        this.connection = connection;
-    }
-    
-    public List<List<String>> fetchData(String sqlScript) {
-        List<List<String>> resultData = new ArrayList<>();
+                case COLUMNS:
+                    System.out.println("Columns Metadata:");
+                    ResultSet columnsResultSet = dmd.getColumns(null, null, tableName, null);
+                    //printResultSet(columnsResultSet);
+                    return columnsResultSet;
+                    
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlScript);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
+                case PRIMARY_KEYS:
+                    System.out.println("Primary Keys Metadata:");
+                    ResultSet primaryKeysResultSet = dmd.getPrimaryKeys(null, null, tableName);
+                    //printResultSet(primaryKeysResultSet);
+                    return primaryKeysResultSet;
+                    
 
-            ResultSetMetaData metaData = resultSet.getMetaData();
+//                case "ImportedKeys":
+//                    System.out.println("Imported Keys (Foreign Keys) Metadata:");
+//                    ResultSet importedKeysResultSet = dmd.getImportedKeys(null, null, tableName);
+//                    //printResultSet(importedKeysResultSet);
+//                    return importedKeysResultSet;
+//                    
+//
+//                case "ExportedKeys":
+//                    System.out.println("Exported Keys (Primary Keys of Referencing Tables) Metadata:");
+//                    ResultSet exportedKeysResultSet = dmd.getExportedKeys(null, null, tableName);
+//                    //printResultSet(exportedKeysResultSet);
+//                    return exportedKeysResultSet;
+//                    
+//
+//                case "CrossReference":
+//                    System.out.println("Cross-Reference (Foreign Keys from Referencing Tables) Metadata:");
+//                    ResultSet crossReferenceResultSet = dmd.getCrossReference(null, null, tableName, null, null, null);
+//                    //printResultSet(crossReferenceResultSet);
+//                    return crossReferenceResultSet;
+//                    
+//
+//                case "Indexes":
+//                    System.out.println("Indexes Metadata:");
+//                    ResultSet indexesResultSet = dmd.getIndexInfo(null, null, tableName, false, true);
+//                    //printResultSet(indexesResultSet);
+//                    return indexesResultSet;
+//                    
+//
+//                case "BestRowIdentifier":
+//                    System.out.println("Best Row Identifier Metadata:");
+//                    ResultSet bestRowIdResultSet = dmd.getBestRowIdentifier(null, null, tableName, DatabaseMetaData.bestRowSession, false);
+//                    //printResultSet(bestRowIdResultSet);
+//                    return bestRowIdResultSet;
+//                    
+//
+//                case "CrossReferenceUnique":
+//                    System.out.println("Cross-Reference (using Unique Constraint) Metadata:");
+//                    ResultSet crossReferenceUniqueResultSet = dmd.getCrossReference(null, null, tableName, null, null, tableName);
+//                    //printResultSet(crossReferenceUniqueResultSet);
+//                    return crossReferenceUniqueResultSet;
+                    
 
-            int columnCount = metaData.getColumnCount();
-
-            // Fetch column names
-            List<String> columnNames = new ArrayList<>();
-            for (int i = 1; i <= columnCount; i++) {
-                String columnName = metaData.getColumnName(i);
-                columnNames.add(columnName);
-            }
-            resultData.add(columnNames);
-
-            // Fetch data
-            while (resultSet.next()) {
-                List<String> rowData = new ArrayList<>();
-                for (int i = 1; i <= columnCount; i++) {
-                    String columnValue = resultSet.getString(i);
-                    rowData.add(columnValue);
-                }
-                resultData.add(rowData);
-            }
-
+                default:
+                    System.out.println("Invalid typeOfData provided.");
+        		}            
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Failed to fetch data.");
         }
-
-        return resultData;
-    }
-
-    public static void main(String[] args) {
-        // Example: Fetch data from a SQL script
-        String sqlScript = "SELECT table_name FROM tables a where a.TABLE_SCHEMA = 'information_schema'";
-
-        // Create an instance of DataManager
-        DataManager dataFetcher = new DataManager(DatabaseConnection.connect());
-
-        // Fetch data
-        List<List<String>> resultData = dataFetcher.fetchData(sqlScript);
-
-        // Process the result
-        System.out.println("Data:");
-        for (List<String> rowData : resultData) {
-            for (String value : rowData) {
-                System.out.print(value + "\t");
-            }
-            System.out.println();
-        }
+		return null;
     }
 }
