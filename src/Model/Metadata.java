@@ -3,14 +3,14 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeneralTable {
+public class RelationalTable {
 	
 	private String modelName;		
  	private ArrayList<String> columns;
 	private ArrayList<String> columnsDataTypes;
 	private List<List<String>> data = new ArrayList<>();
 	
-	public GeneralTable(String modelName) {
+	public RelationalTable(String modelName) {
 		this.modelName = modelName;
 	}
 
