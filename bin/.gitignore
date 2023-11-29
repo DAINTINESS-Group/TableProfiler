@@ -1,6 +1,5 @@
-/DatabaseTaskTests/
+/App/
 /DatabaseTasks/
-/Model/
-/Reporting/
-/Main/
 /Enums/
+/Model/
+/DatabaseTaskTests/
