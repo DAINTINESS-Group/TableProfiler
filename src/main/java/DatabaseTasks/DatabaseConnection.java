@@ -4,24 +4,27 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 public class DatabaseConnection {
 
     // JDBC URL, username, and password of MySQL server
-    private static final String URL = "jdbc:mysql://localhost:3306/information_schema";
-    private static final String USER = "root";
-    private static final String PASSWORD = "123456";
+//    private static final String URL = "jdbc:mysql://localhost:3306/dwh";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "123456";
 
     // JDBC variables for opening, closing, and managing connection
     private static Connection connection;
 
     // Method to establish a connection to the database
-    public static Connection connect() {
+    public static Connection connect(String ip, String username, String password) {
         try {
             // Register the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-
+            ip = "jdbc:mysql://"+ip+"/dwh";
             // Open a connection
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(ip, username, password);
             return connection;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -40,12 +43,12 @@ public class DatabaseConnection {
         }
     }
 
-    public static void main(String[] args) {
-        // Example usage
-        Connection dbConnection = connect();
-        System.out.println("Connected to the database!");
-
-        // Don't forget to close the connection when you're done
-        closeConnection();
-    }
+//    public static void main(String[] args) {
+//        // Example usage
+//        Connection dbConnection = connect("localhost:3306","root","123456");
+//        System.out.println("Connected to the database!");
+//
+//        // Don't forget to close the connection when you're done
+//        closeConnection();
+//    }
 }
