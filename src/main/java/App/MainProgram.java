@@ -22,6 +22,7 @@ public class MainProgram {
     private JPasswordField passwordField;
     private JTextField ipField;
     private JTextField tableNameField;
+    private JTextField schemaNameField;
     private final Map<MetadataType, JCheckBox> checkboxMap = new HashMap<>();
     MetadataManager metaManager;
 
@@ -40,7 +41,7 @@ public class MainProgram {
         JPanel panel = metadataFacade.createPanel();
 
         frame.getContentPane().add(panel);
-        frame.setSize(400, 300);
+        frame.setSize(1024, 768);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -57,6 +58,7 @@ public class MainProgram {
         passwordField = new JPasswordField("123456");
         ipField = new JTextField("localhost:3306");
         tableNameField = new JTextField("ALL");//"salesorderheader");
+        schemaNameField = new JTextField("adventureworks");
         
         for (MetadataType type : MetadataType.values()) {
             JCheckBox checkBox = new JCheckBox(type.getDisplayName());
@@ -100,6 +102,9 @@ public class MainProgram {
 
         inputPanel.add(new JLabel("Desired Table Name:"));
         inputPanel.add(tableNameField);
+        
+        inputPanel.add(new JLabel("Schema Name:"));
+        inputPanel.add(schemaNameField);
 
         mainPanel.add(inputPanel);
 
@@ -115,6 +120,7 @@ public class MainProgram {
         String password = new String(passwordChars);
         String ip = ipField.getText();
         String tableName = tableNameField.getText();
+        String schemaName = schemaNameField.getText();
         //System.out.println("username :" +username+",password :"+password+", ip :"+ip);
         Connection connection = DatabaseConnection.connect(ip, username, password);
         metaManager = new MetadataManager();        
@@ -127,7 +133,7 @@ public class MainProgram {
                 tableTypes.add(type);
             }
         }
-        metaManager.createMetadata(tableTypes, tableName, connection);
+        metaManager.createMetadata(tableTypes, schemaName, tableName, connection);
         //System.out.println(metaManager.toString());
         showMetadataDialog();      	
         
@@ -144,7 +150,7 @@ public class MainProgram {
 
         dialogFrame.getContentPane().add(scrollPane);
 
-        dialogFrame.setSize(600, 400);
+        dialogFrame.setSize(1024, 768);
         dialogFrame.setLocationRelativeTo(null);
         dialogFrame.setVisible(true);
     }

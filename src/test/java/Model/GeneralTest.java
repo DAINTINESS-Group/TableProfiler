@@ -1,5 +1,7 @@
 package Model;
 
+import static org.junit.Assert.assertEquals;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +18,8 @@ import Statistics.TableStatistics;
 public class GeneralTest {
 	
 	
-	public static void generalTest() throws SQLException {
+	@Test
+    public void testGeneralFunctionality() throws SQLException {
 	Connection connection = DatabaseConnection.connect("localhost:3306", "root", "123456");
 	MetadataManager metaManager = new MetadataManager();        
     ArrayList<MetadataType> tableTypes =  new ArrayList<MetadataType>();
@@ -24,7 +27,7 @@ public class GeneralTest {
     tableTypes.add(MetadataType.PRIMARY_KEYS);
     tableTypes.add(MetadataType.IMPORTED_KEYS);
     tableTypes.add(MetadataType.INDEXES);    
-    metaManager.createMetadata(tableTypes, "ALL", connection);
+    metaManager.createMetadata(tableTypes,"adventureworks", "ALL", connection);
     StringBuilder resultStringBuilder = new StringBuilder();
     DatabaseStatistics fromQuetyDStats = new DatabaseStatistics(); 
     TableStatistics tStats = null;
@@ -68,14 +71,15 @@ public class GeneralTest {
         }
     
 
-    System.out.println(resultStringBuilder.toString());
-    System.out.println(fromQuetyDStats.toString());
-    System.out.println(metaManager.databaseStatistics.toString());
-    System.out.println(fromQuetyDStats.toString().equals(metaManager.databaseStatistics.toString()));
+//    System.out.println(resultStringBuilder.toString());
+//    System.out.println(fromQuetyDStats.toString());
+//    System.out.println(metaManager.databaseStatistics.toString());
+    //System.out.println(fromQuetyDStats.toString().equals(metaManager.databaseStatistics.toString()));
+        assertEquals(fromQuetyDStats.toString(), metaManager.databaseStatistics.toString());
 }		
-
-
-public static void main(String[] args) throws SQLException {
-	generalTest();
 }
-}
+
+//public static void main(String[] args) throws SQLException {
+//	generalTest();
+//}
+//}

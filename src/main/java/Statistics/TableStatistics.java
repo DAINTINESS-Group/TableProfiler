@@ -8,9 +8,11 @@ public class TableStatistics {
 	private int uks = 0;
 	private int rows = 0;
 	private int inds = 0;
-	//private int referedPks =0;
+	private int setTblPrvs = 0;
+	private int setColPrvs =0;
 	private int pksReferedToOtherFks = 0;
 	
+		
 	public TableStatistics(String tableName, int columns, int pks, int fks, int uks, int rows, int inds) {
 		super();
 		this.tableName = tableName;
@@ -77,6 +79,23 @@ public class TableStatistics {
 	public String getTableName() {
 		return tableName;
 	}
+	
+	public int getTblPrvs() {
+		return setTblPrvs;
+	}
+
+	public void setTblPrvs(int setTblPrvs) {
+		this.setTblPrvs = setTblPrvs;
+	}
+
+	public int getColPrvs() {
+		return setColPrvs;
+	}
+
+	public void setColPrvs(int setColPrvs) {
+		this.setColPrvs = setColPrvs;
+	}
+
 	
 	@Override
 	public String toString() {

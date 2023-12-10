@@ -25,20 +25,20 @@ public class MetadataManager {
 		return metadataList;
 	}
 
-	public void createMetadata(ArrayList<MetadataType> typeOfDataList, String tableName, Connection connection)
+	public void createMetadata(ArrayList<MetadataType> typeOfDataList, String schemaName, String tableName, Connection connection)
 			throws SQLException {
 		DataManager dataManager = new DataManager();
 		int counter = 0;
 		TableStatistics tStats = null ;
 		if (tableName.equals("ALL")) {
-			ResultSet allTableNames = dataManager.extractTableMetadata(connection, MetadataType.TABLES, tableName);
+			ResultSet allTableNames = dataManager.extractTableMetadata(connection, MetadataType.TABLES, schemaName, tableName);
 			while (allTableNames.next()) {
 				String tableNameS = allTableNames.getString("TABLE_NAME");
 				tStats = new TableStatistics(tableNameS, 0, 0, 0, 0, 0, 0);
 				Metadata metadata = new Metadata(tableNameS);
 
 				for (MetadataType typeOfData : typeOfDataList) {
-					ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, tableNameS);
+					ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, schemaName, tableNameS);
 					counter = metadata.addList(typeOfData, resultSet);
 					switch (typeOfData) {
 					case TABLES:
@@ -56,18 +56,24 @@ public class MetadataManager {
 					case EXPORTED_KEYS:
 						tStats.setPksReferedToOtherFks(counter);
 						break;
-					case CROSS_REFERENCE:
-						tStats.setRows(counter);
-						break;
+//					case CROSS_REFERENCE:
+//						tStats.setRows(counter);
+//						break;
 					case INDEXES:
 						tStats.setInds(counter);
 						break;
-					case BEST_ROW_IDENTIFIER:
-						tStats.setRows(counter);
+					case TABLE_PRIVILEGES:
+						tStats.setTblPrvs(counter);
 						break;
-					case CROSS_REFERENCE_UNIQUE:
-						tStats.setRows(counter);
-						break;
+//					case COLUMN_PRIVILEGES:
+//						tStats.setColPrvs(counter);
+//						break;
+//					case BEST_ROW_IDENTIFIER:
+//						tStats.setRows(counter);
+//						break;
+//					case CROSS_REFERENCE_UNIQUE:
+//						tStats.setRows(counter);
+//						break;
 					default:
 						System.out.println("Invalid typeOfData provided.");
 						break;
@@ -80,7 +86,7 @@ public class MetadataManager {
 			tStats = new TableStatistics(tableName, 0, 0, 0, 0, 0, 0);
 			Metadata metadata = new Metadata(tableName);			
 			for (MetadataType typeOfData : typeOfDataList) {
-				ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, tableName);
+				ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, schemaName, tableName);
 				counter = metadata.addList(typeOfData, resultSet);
 				System.out.println(typeOfData + " : " + counter);
 				switch (typeOfData) {
@@ -99,18 +105,24 @@ public class MetadataManager {
 				case EXPORTED_KEYS:
 					tStats.setPksReferedToOtherFks(counter);
 					break;
-				case CROSS_REFERENCE:
-					tStats.setRows(counter);
-					break;
+//				case CROSS_REFERENCE:
+//					tStats.setRows(counter);
+//					break;
 				case INDEXES:
 					tStats.setInds(counter);
 					break;
-				case BEST_ROW_IDENTIFIER:
-					tStats.setRows(counter);
+				case TABLE_PRIVILEGES:
+					tStats.setTblPrvs(counter);
 					break;
-				case CROSS_REFERENCE_UNIQUE:
-					tStats.setRows(counter);
-					break;
+//				case COLUMN_PRIVILEGES:
+//					tStats.setColPrvs(counter);
+//					break;
+//				case BEST_ROW_IDENTIFIER:
+//					tStats.setRows(counter);
+//					break;
+//				case CROSS_REFERENCE_UNIQUE:
+//					tStats.setRows(counter);
+//					break;
 				default:
 					System.out.println("Invalid typeOfData provided.");
 					break;

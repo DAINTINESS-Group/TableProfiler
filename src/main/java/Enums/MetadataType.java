@@ -6,10 +6,12 @@ public enum MetadataType {
     PRIMARY_KEYS("Primary Keys"),
     IMPORTED_KEYS("Imported Keys"),
     EXPORTED_KEYS("Exported Keys"),
-    CROSS_REFERENCE("Cross-Reference"),
+   // CROSS_REFERENCE("Cross-Reference"),
     INDEXES("Indexes"),
-    BEST_ROW_IDENTIFIER("Best Row Identifier"),
-    CROSS_REFERENCE_UNIQUE("Cross-Reference Unique");
+   // BEST_ROW_IDENTIFIER("Best Row Identifier"),
+   // CROSS_REFERENCE_UNIQUE("Cross-Reference Unique"),
+    TABLE_PRIVILEGES("Table Privileges");//,
+    //COLUMN_PRIVILEGES("Column Privileges");
 
     private final String displayName;
 

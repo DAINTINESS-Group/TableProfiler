@@ -25,19 +25,42 @@ public class Metadata {
         List<Map<String, String>> metadataList = new ArrayList<>();
         ResultSetMetaData metaData = (ResultSetMetaData) resultSet.getMetaData();
         int columnCount = metaData.getColumnCount();
-
+        ArrayList<String> previousKeys = new ArrayList<String>();
+        int counter = 0;
         while (resultSet.next()) {
             Map<String, String> row = new HashMap<>();
             for (int i = 1; i <= columnCount; i++) {
                 String columnName = metaData.getColumnName(i);
                 String columnValue = resultSet.getString(i);
-                
+                if(typeOfData == MetadataType.IMPORTED_KEYS && columnName.equals("FK_NAME") && !columnValue.isEmpty() && !previousKeys.contains(columnValue)) {
+                	previousKeys.add(columnValue);
+                	counter++;                	
+                }
+                if(typeOfData == MetadataType.EXPORTED_KEYS && columnName.equals("FK_NAME") && !columnValue.isEmpty() && !previousKeys.contains(columnValue)) {
+                	previousKeys.add(columnValue);
+                	counter++;                	
+                }
+                else if(typeOfData == MetadataType.PRIMARY_KEYS && columnName.equals("PK_NAME") && !columnValue.isEmpty() && !previousKeys.contains(columnValue)) {
+                	previousKeys.add(columnValue);
+                	counter++;                	
+                }
+                else if(typeOfData == MetadataType.COLUMNS && columnName.equals("COLUMN_NAME") && !columnValue.isEmpty() && !previousKeys.contains(columnValue)) {
+                	previousKeys.add(columnValue);
+                	counter++;                	
+                }                
+                else if(typeOfData == MetadataType.INDEXES && columnName.equals("INDEX_NAME") && !columnValue.isEmpty() && !previousKeys.contains(columnValue)) {
+                	previousKeys.add(columnValue);
+                	counter++;                	
+                }
+                else {
+                	counter = metadataList.size();
+                }
                 row.put(columnName, columnValue);
             }
             metadataList.add(row);
         }
         metadataMap.put(typeOfData.toString(), metadataList);
-        return metadataList.size();
+        return counter;
     }
 
     public String getAllMetadata() {
