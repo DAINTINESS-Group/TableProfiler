@@ -3,42 +3,66 @@ package DatabaseTasks;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import DatabaseTasks.DatabaseConnection;
 
-class DatabaseConnectionTest {
+public class DatabaseConnectionJUnitTest {
 
-    private static Connection connection;
+    private static final String TEST_IP = "localhost:3306";
+    private static final String TEST_USERNAME = "root";
+    private static final String TEST_PASSWORD = "123456";
 
-    @BeforeAll
-    static void setUp() {
-        // Establish a connection before running tests
-        //connection = DatabaseConnection.connect();
+    private Connection testConnection;
+
+    @BeforeEach
+    public void setUp() {
+        // Set up any preconditions or resources needed for the tests
     }
 
-    @AfterAll
-    static void tearDown() {
-        // Close the connection after running tests
+    @AfterEach
+    public void tearDown() {
+        // Clean up any resources after the tests
+    }
+
+    @Test
+    public void testConnect() {
+        // Test connection establishment
+
+        // Act
+        testConnection = DatabaseConnection.connect(TEST_IP, TEST_USERNAME, TEST_PASSWORD);
+
+        // Assert
+        assertNotNull(testConnection);
+        try {
+            assertFalse(testConnection.isClosed());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            fail("SQLException: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testCloseConnection() {
+        // Test connection closure
+
+        // Arrange
+        testConnection = DatabaseConnection.connect(TEST_IP, TEST_USERNAME, TEST_PASSWORD);
+
+        // Act
         DatabaseConnection.closeConnection();
-    }
 
-    @Test
-    void testConnectionNotNull() {
-        assertNotNull(connection, "Connection should not be null");
-    }
-
-    @Test
-    void testConnectionIsOpen() {
-//        try {
-//			assertTrue(DatabaseConnection.connect().isValid(5), "Connection should be open and valid");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+        // Assert
+        try {
+            assertTrue(testConnection.isClosed());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            fail("SQLException: " + e.getMessage());
+        }
     }
 }

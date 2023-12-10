@@ -23,6 +23,7 @@ public class MainProgram {
     private JTextField ipField;
     private JTextField tableNameField;
     private final Map<MetadataType, JCheckBox> checkboxMap = new HashMap<>();
+    MetadataManager metaManager;
 
 
     public static void main(String[] args) {
@@ -55,7 +56,7 @@ public class MainProgram {
         usernameField = new JTextField("root");
         passwordField = new JPasswordField("123456");
         ipField = new JTextField("localhost:3306");
-        tableNameField = new JTextField("countries");
+        tableNameField = new JTextField("ALL");//"salesorderheader");
         
         for (MetadataType type : MetadataType.values()) {
             JCheckBox checkBox = new JCheckBox(type.getDisplayName());
@@ -69,7 +70,7 @@ public class MainProgram {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 try {
-                	System.out.print("yeah!!!!");
+                	//System.out.print("yeah!!!!");
 					displayMetadataResults();					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -114,33 +115,31 @@ public class MainProgram {
         String password = new String(passwordChars);
         String ip = ipField.getText();
         String tableName = tableNameField.getText();
-        System.out.println("username :" +username+",password :"+password+", ip :"+ip);
+        //System.out.println("username :" +username+",password :"+password+", ip :"+ip);
         Connection connection = DatabaseConnection.connect(ip, username, password);
-        MetadataManager metaManager = new MetadataManager();        
+        metaManager = new MetadataManager();        
         ArrayList<MetadataType> tableTypes =  new ArrayList<MetadataType>();
         for (Map.Entry<MetadataType, JCheckBox> entry : checkboxMap.entrySet()) {
             MetadataType type = entry.getKey();
             JCheckBox checkBox = entry.getValue();
             if (checkBox.isSelected()) {
-            	System.out.println(type.toString());
+            	//System.out.println(type.toString());
                 tableTypes.add(type);
             }
         }
         metaManager.createMetadata(tableTypes, tableName, connection);
-        for(Metadata metadata : metaManager.getMetadataList()) {
-        	System.out.println(metadata.getTableName());
-        	getMetadataText(metadata);
-        	showMetadataDialog(metadata);
-        }
+        //System.out.println(metaManager.toString());
+        showMetadataDialog();      	
+        
         
         DatabaseConnection.closeConnection();    
     }
 
-    private void showMetadataDialog(Metadata metadata) throws SQLException {
+    private void showMetadataDialog() throws SQLException {
         JFrame dialogFrame = new JFrame("Metadata Results");
         dialogFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JTextArea textArea = new JTextArea(getMetadataText(metadata));
+        JTextArea textArea = new JTextArea(metaManager.toString());
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         dialogFrame.getContentPane().add(scrollPane);
@@ -150,8 +149,12 @@ public class MainProgram {
         dialogFrame.setVisible(true);
     }
 
-    private String getMetadataText(Metadata metadata) {
-        return "Table Name: " + metadata.getTableName() + "\n"
-		        + metadata.getAllMetadata();
-    }
+//    private String getMetadataText(Metadata metadata) {
+//    	 StringBuilder builder = new StringBuilder();
+//    	 builder.append("Table Name: ").append(metadata.getTableName()).append("\n")
+//    	 	//.append(metadata.getTabularMetadata())
+//    	    .append(metaManager.databaseStatistics.toString()).append("\n");
+//    	    
+//    	 return builder.toString();
+//    }
 }

@@ -18,7 +18,7 @@ public class DataManager {
 	        for (int i = 1; i <= columnCount; i++) {
 	            String columnName = resultSetMetaData.getColumnName(i);
 	            String columnValue = resultSet.getString(i);
-	            System.out.println("\t" + columnName + ": " + columnValue);
+	           // System.out.println("\t" + columnName + ": " + columnValue);
 	        }
 	        System.out.println();
 	    }
@@ -30,66 +30,70 @@ public class DataManager {
         		DatabaseMetaData dmd = (DatabaseMetaData) connection.getMetaData();
         		switch (typeOfData) {
                 case TABLES:
-                    System.out.println("Tables Metadata:");
+                  //  System.out.println("Tables Metadata:");
+                    if(tableName.equals("ALL")) {
+                    	ResultSet tablesResultSet = dmd.getTables(null, null, null, new String[]{"TABLE"});
+                    	return tablesResultSet;
+                    }
                     ResultSet tablesResultSet = dmd.getTables(null, null, tableName, new String[]{"TABLE"});
                     //printResultSet(tablesResultSet);
                     return tablesResultSet;
                     
 
                 case COLUMNS:
-                    System.out.println("Columns Metadata:");
+                    //System.out.println("Columns Metadata:");
                     ResultSet columnsResultSet = dmd.getColumns(null, null, tableName, null);
                     //printResultSet(columnsResultSet);
                     return columnsResultSet;
                     
 
                 case PRIMARY_KEYS:
-                    System.out.println("Primary Keys Metadata:");
+//                    System.out.println("Primary Keys Metadata:");
                     ResultSet primaryKeysResultSet = dmd.getPrimaryKeys(null, null, tableName);
                     //printResultSet(primaryKeysResultSet);
                     return primaryKeysResultSet;
                     
 
-//                case "ImportedKeys":
+                case IMPORTED_KEYS:
 //                    System.out.println("Imported Keys (Foreign Keys) Metadata:");
-//                    ResultSet importedKeysResultSet = dmd.getImportedKeys(null, null, tableName);
-//                    //printResultSet(importedKeysResultSet);
-//                    return importedKeysResultSet;
-//                    
-//
-//                case "ExportedKeys":
+                    ResultSet importedKeysResultSet = dmd.getImportedKeys(null, null, tableName);
+                    //printResultSet(importedKeysResultSet);
+                    return importedKeysResultSet;
+                    
+
+                case EXPORTED_KEYS:
 //                    System.out.println("Exported Keys (Primary Keys of Referencing Tables) Metadata:");
-//                    ResultSet exportedKeysResultSet = dmd.getExportedKeys(null, null, tableName);
-//                    //printResultSet(exportedKeysResultSet);
-//                    return exportedKeysResultSet;
-//                    
-//
-//                case "CrossReference":
+                    ResultSet exportedKeysResultSet = dmd.getExportedKeys(null, null, tableName);
+                    //printResultSet(exportedKeysResultSet);
+                    return exportedKeysResultSet;
+                   
+
+                case CROSS_REFERENCE:
 //                    System.out.println("Cross-Reference (Foreign Keys from Referencing Tables) Metadata:");
-//                    ResultSet crossReferenceResultSet = dmd.getCrossReference(null, null, tableName, null, null, null);
-//                    //printResultSet(crossReferenceResultSet);
-//                    return crossReferenceResultSet;
-//                    
-//
-//                case "Indexes":
+                    ResultSet crossReferenceResultSet = dmd.getCrossReference(null, null, tableName, null, null, null);
+                    //printResultSet(crossReferenceResultSet);
+                    return crossReferenceResultSet;
+                    
+
+                case INDEXES:
 //                    System.out.println("Indexes Metadata:");
-//                    ResultSet indexesResultSet = dmd.getIndexInfo(null, null, tableName, false, true);
-//                    //printResultSet(indexesResultSet);
-//                    return indexesResultSet;
-//                    
-//
-//                case "BestRowIdentifier":
+                    ResultSet indexesResultSet = dmd.getIndexInfo(null, null, tableName, false, true);
+                    //printResultSet(indexesResultSet);
+                    return indexesResultSet;
+                    
+
+                case BEST_ROW_IDENTIFIER:
 //                    System.out.println("Best Row Identifier Metadata:");
-//                    ResultSet bestRowIdResultSet = dmd.getBestRowIdentifier(null, null, tableName, DatabaseMetaData.bestRowSession, false);
-//                    //printResultSet(bestRowIdResultSet);
-//                    return bestRowIdResultSet;
-//                    
-//
-//                case "CrossReferenceUnique":
+                    ResultSet bestRowIdResultSet = dmd.getBestRowIdentifier(null, null, tableName, DatabaseMetaData.bestRowSession, false);
+                    //printResultSet(bestRowIdResultSet);
+                    return bestRowIdResultSet;
+                    
+
+                case CROSS_REFERENCE_UNIQUE:
 //                    System.out.println("Cross-Reference (using Unique Constraint) Metadata:");
-//                    ResultSet crossReferenceUniqueResultSet = dmd.getCrossReference(null, null, tableName, null, null, tableName);
-//                    //printResultSet(crossReferenceUniqueResultSet);
-//                    return crossReferenceUniqueResultSet;
+                    ResultSet crossReferenceUniqueResultSet = dmd.getCrossReference(null, null, tableName, null, null, tableName);
+                    //printResultSet(crossReferenceUniqueResultSet);
+                    return crossReferenceUniqueResultSet;
                     
 
                 default:

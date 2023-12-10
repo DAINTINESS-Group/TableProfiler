@@ -21,7 +21,7 @@ public class Metadata {
         this.metadataMap = new HashMap<>();
     }
 
-    public void addList(MetadataType typeOfData, ResultSet resultSet) throws SQLException {
+    public int addList(MetadataType typeOfData, ResultSet resultSet) throws SQLException {    	
         List<Map<String, String>> metadataList = new ArrayList<>();
         ResultSetMetaData metaData = (ResultSetMetaData) resultSet.getMetaData();
         int columnCount = metaData.getColumnCount();
@@ -31,22 +31,64 @@ public class Metadata {
             for (int i = 1; i <= columnCount; i++) {
                 String columnName = metaData.getColumnName(i);
                 String columnValue = resultSet.getString(i);
+                
                 row.put(columnName, columnValue);
             }
             metadataList.add(row);
         }
-
         metadataMap.put(typeOfData.toString(), metadataList);
+        return metadataList.size();
     }
 
     public String getAllMetadata() {
         StringBuilder metadatas = new StringBuilder();
         for (Map.Entry<String, List<Map<String, String>>> entry : metadataMap.entrySet()) {
             String typeOfData = entry.getKey();
+            metadatas.append(entry.getKey().toString());
             List<Map<String, String>> resultSets = entry.getValue();
             metadatas.append(printResultSets(typeOfData, resultSets));
+            
         }
         return metadatas.toString();
+    }
+    
+    public String getTabularMetadata() {
+        StringBuilder tabularMetadata = new StringBuilder();
+        int counter = 0;
+        for (Map.Entry<String, List<Map<String, String>>> entry : metadataMap.entrySet()) {
+            String typeOfData = entry.getKey();
+            tabularMetadata.append(typeOfData).append(" Metadata:\n");
+
+            List<Map<String, String>> resultSets = entry.getValue();
+
+            if (!resultSets.isEmpty()) {
+                tabularMetadata.append(getTableHeader(resultSets.get(0))).append("\n");
+
+                for (Map<String, String> row : resultSets) {
+                    tabularMetadata.append(getTableRow(row)).append("\n");
+                }
+            }
+        }
+
+        return tabularMetadata.toString();
+    }
+
+    private String getTableHeader(Map<String, String> row) {
+        StringBuilder header = new StringBuilder();
+        for (String columnName : row.keySet()) {
+            header.append(String.format("| %-20s ", columnName));
+        }
+        header.append("|\n");
+        return header.toString();
+    }
+
+    private String getTableRow(Map<String, String> row) {
+        StringBuilder tableRow = new StringBuilder();
+        for (String columnValue : row.values()) {
+            tableRow.append(String.format("| %-30s ", columnValue));
+        }
+        tableRow.append("|\n");
+        return tableRow.toString();
     }
 
     private String printResultSets(String typeOfData, List<Map<String, String>> resultSets) {
@@ -66,5 +108,6 @@ public class Metadata {
 
 	public String getTableName() {		
 		return this.tableName;
-	}
+	}	
+	
 }

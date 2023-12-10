@@ -22,7 +22,7 @@ public class DatabaseConnection {
         try {
             // Register the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            ip = "jdbc:mysql://"+ip+"/dwh";
+            ip = "jdbc:mysql://"+ip+"/adventureworks";
             // Open a connection
             connection = DriverManager.getConnection(ip, username, password);
             return connection;
@@ -42,13 +42,4 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
-
-//    public static void main(String[] args) {
-//        // Example usage
-//        Connection dbConnection = connect("localhost:3306","root","123456");
-//        System.out.println("Connected to the database!");
-//
-//        // Don't forget to close the connection when you're done
-//        closeConnection();
-//    }
 }
