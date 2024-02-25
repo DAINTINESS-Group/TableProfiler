@@ -56,18 +56,24 @@ public class MetadataManager {
 					case EXPORTED_KEYS:
 						tStats.setPksReferedToOtherFks(counter);
 						break;
-//					case CROSS_REFERENCE:
-//						tStats.setRows(counter);
-//						break;
+					case CROSS_REFERENCE:
+						tStats.setRows(counter);
+						break;
 					case INDEXES:
 						tStats.setInds(counter);
 						break;
 					case TABLE_PRIVILEGES:
 						tStats.setTblPrvs(counter);
 						break;
-//					case COLUMN_PRIVILEGES:
-//						tStats.setColPrvs(counter);
-//						break;
+					case COLUMN_PRIVILEGES:
+						tStats.setColPrvs(counter);
+						break;
+					case VERSION_COLUMNS:
+						tStats.setColPrvs(counter);
+						break;
+					case TYPE_INFO:
+						tStats.setColPrvs(counter);
+						break;
 //					case BEST_ROW_IDENTIFIER:
 //						tStats.setRows(counter);
 //						break;
@@ -105,18 +111,24 @@ public class MetadataManager {
 				case EXPORTED_KEYS:
 					tStats.setPksReferedToOtherFks(counter);
 					break;
-//				case CROSS_REFERENCE:
-//					tStats.setRows(counter);
-//					break;
+				case CROSS_REFERENCE:
+					tStats.setRows(counter);
+					break;
 				case INDEXES:
 					tStats.setInds(counter);
 					break;
 				case TABLE_PRIVILEGES:
 					tStats.setTblPrvs(counter);
 					break;
-//				case COLUMN_PRIVILEGES:
-//					tStats.setColPrvs(counter);
-//					break;
+				case COLUMN_PRIVILEGES:
+					tStats.setColPrvs(counter);
+					break;
+				case VERSION_COLUMNS:
+					tStats.setColPrvs(counter);
+					break;
+				case TYPE_INFO:
+					tStats.setColPrvs(counter);
+					break;
 //				case BEST_ROW_IDENTIFIER:
 //					tStats.setRows(counter);
 //					break;
@@ -135,7 +147,12 @@ public class MetadataManager {
 	
 	@Override
 	public String toString() {
-		return databaseStatistics.toString();	
+		StringBuilder retValue = new StringBuilder();
+		retValue.append(databaseStatistics.toString()).append("\n");
+		for (Metadata metadata : metadataList) {
+			retValue.append(metadata.toString()).append("\n"); 
+		}		
+		return retValue.toString();	
 	}
 
 }

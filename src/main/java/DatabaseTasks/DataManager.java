@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 //import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetProvider;
+
 import com.mysql.cj.jdbc.DatabaseMetaData;
 import Enums.MetadataType;
 
@@ -29,14 +34,20 @@ public class DataManager {
         try {
         	
         		DatabaseMetaData dmd = (DatabaseMetaData) connection.getMetaData();
+        		// get tables        		  
+        		  ArrayList<String> databaseTables = new ArrayList(); 
+        		  ResultSet tablesResultSet = dmd.getTables(null, schemaName, null, new String[]{"TABLE"});
+        		  while(tablesResultSet.next()) {
+        			  databaseTables.add(tablesResultSet.getString("TABLE_NAME"));
+        		  }
         		switch (typeOfData) {
                 case TABLES:
                   //  System.out.println("Tables Metadata:");
                     if(tableName.equals("ALL")) {
-                    	ResultSet tablesResultSet = dmd.getTables(null, schemaName, null, new String[]{"TABLE"});
+                    	tablesResultSet = dmd.getTables(null, schemaName, null, new String[]{"TABLE"});
                     	return tablesResultSet;
                     }
-                    ResultSet tablesResultSet = dmd.getTables(null, schemaName, tableName, new String[]{"TABLE"});
+                    tablesResultSet = dmd.getTables(null, schemaName, tableName, new String[]{"TABLE"});
                     //printResultSet(tablesResultSet);
                     return tablesResultSet;
                     
@@ -68,17 +79,16 @@ public class DataManager {
                     //printResultSet(exportedKeysResultSet);
                     return exportedKeysResultSet;
                    
-
+                // to execute getCrossReference we have to know the relations the exampe thats why we use for
 //                case CROSS_REFERENCE:
-////                    System.out.println("Cross-Reference (Foreign Keys from Referencing Tables) Metadata:");
-//                    ResultSet crossReferenceResultSet = dmd.getCrossReference(null, schemaName, tableName, null, null, null);
-//                    //printResultSet(crossReferenceResultSet);
-//                    return crossReferenceResultSet;
+//                	ResultSet resultSetTemp = connection.getMetaData().getCrossReference(null, null, "contactcreditcard",null, null,"creditcard" );
+////                	
+//                    return resultSetTemp;
                     
 
                 case INDEXES:
 //                    System.out.println("Indexes Metadata:");
-                    ResultSet indexesResultSet = dmd.getIndexInfo(null, schemaName, tableName, false, true);
+                    ResultSet indexesResultSet = dmd.getIndexInfo(null, schemaName, tableName, false, true);                    
                     //printResultSet(indexesResultSet);
                     return indexesResultSet;
                     
@@ -99,17 +109,28 @@ public class DataManager {
                     
                 case TABLE_PRIVILEGES:
 //                  System.out.println("Cross-Reference (using Unique Constraint) Metadata:");
-                  ResultSet tablePrivilegesResultSet = dmd.getTablePrivileges(null, schemaName, tableName);
+                  ResultSet tablePrivilegesResultSet = dmd.getTablePrivileges(null , schemaName, tableName);
                   //printResultSet(crossReferenceUniqueResultSet);
                   return tablePrivilegesResultSet;
                   
                   
-//                case COLUMN_PRIVILEGES:
-//                    // System.out.println("Column Privileges Metadata:");
-//                    ResultSet columnPrivilegesResultSet = dmd.getColumnPrivileges(null, schemaName, tableName);
+                case COLUMN_PRIVILEGES:
+                    System.out.println("Column Privileges Metadata:");
+                    ResultSet columnPrivilegesResultSet = dmd.getColumnPrivileges(connection.getCatalog(), schemaName, tableName, "%");                    
 //                    // printResultSet(columnPrivilegesResultSet);
-//                    return columnPrivilegesResultSet;
+                    return columnPrivilegesResultSet;
+                
+                case VERSION_COLUMNS:
+                    System.out.println("Column Versions Metadata:");
+                    ResultSet versionColumns = dmd.getVersionColumns(connection.getCatalog(), schemaName, tableName);                    
+//                    // printResultSet(columnPrivilegesResultSet);
+                    return versionColumns;    
                     
+                case TYPE_INFO:
+                    System.out.println("Type Info Metadata:");
+                    ResultSet typeInfo = dmd.getTypeInfo();                    
+//                    // printResultSet(columnPrivilegesResultSet);
+                    return typeInfo; 
 
                 default:
                     System.out.println("Invalid typeOfData provided.");
