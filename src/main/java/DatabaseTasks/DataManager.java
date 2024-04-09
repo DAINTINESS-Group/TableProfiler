@@ -35,47 +35,47 @@ public class DataManager {
         	
         		DatabaseMetaData dmd = (DatabaseMetaData) connection.getMetaData();
         		// get tables        		  
-        		  ArrayList<String> databaseTables = new ArrayList(); 
+        		  //ArrayList<String> databaseTables = new ArrayList(); 
         		  ResultSet tablesResultSet = dmd.getTables(null, schemaName, null, new String[]{"TABLE"});
-        		  while(tablesResultSet.next()) {
-        			  databaseTables.add(tablesResultSet.getString("TABLE_NAME"));
-        		  }
+//        		  while(tablesResultSet.next()) {
+//        			  databaseTables.add(tablesResultSet.getString("TABLE_NAME"));
+//        		  }
         		switch (typeOfData) {
                 case TABLES:
                   //  System.out.println("Tables Metadata:");
                     if(tableName.equals("ALL")) {
-                    	tablesResultSet = dmd.getTables(null, schemaName, null, new String[]{"TABLE"});
+                    	tablesResultSet = dmd.getTables(schemaName, schemaName, null, new String[]{"TABLE"});
                     	return tablesResultSet;
                     }
-                    tablesResultSet = dmd.getTables(null, schemaName, tableName, new String[]{"TABLE"});
+                    tablesResultSet = dmd.getTables(schemaName, schemaName, tableName, new String[]{"TABLE"});
                     //printResultSet(tablesResultSet);
                     return tablesResultSet;
                     
 
                 case COLUMNS:
                     //System.out.println("Columns Metadata:");
-                    ResultSet columnsResultSet = dmd.getColumns(null, schemaName, tableName, null);
+                    ResultSet columnsResultSet = dmd.getColumns(schemaName, schemaName, tableName, null);
                     //printResultSet(columnsResultSet);
                     return columnsResultSet;
                     
 
                 case PRIMARY_KEYS:
 //                    System.out.println("Primary Keys Metadata:");
-                    ResultSet primaryKeysResultSet = dmd.getPrimaryKeys(null, schemaName, tableName);
+                    ResultSet primaryKeysResultSet = dmd.getPrimaryKeys(schemaName, schemaName, tableName);
                     //printResultSet(primaryKeysResultSet);
                     return primaryKeysResultSet;
                     
 
                 case IMPORTED_KEYS:
 //                    System.out.println("Imported Keys (Foreign Keys) Metadata:");
-                    ResultSet importedKeysResultSet = dmd.getImportedKeys(null, schemaName, tableName);
+                    ResultSet importedKeysResultSet = dmd.getImportedKeys(schemaName, schemaName, tableName);
                     //printResultSet(importedKeysResultSet);
                     return importedKeysResultSet;
                     
 
                 case EXPORTED_KEYS:
 //                    System.out.println("Exported Keys (Primary Keys of Referencing Tables) Metadata:");
-                    ResultSet exportedKeysResultSet = dmd.getExportedKeys(null, schemaName, tableName);
+                    ResultSet exportedKeysResultSet = dmd.getExportedKeys(schemaName, schemaName, tableName);
                     //printResultSet(exportedKeysResultSet);
                     return exportedKeysResultSet;
                    
@@ -88,7 +88,7 @@ public class DataManager {
 
                 case INDEXES:
 //                    System.out.println("Indexes Metadata:");
-                    ResultSet indexesResultSet = dmd.getIndexInfo(null, schemaName, tableName, false, true);                    
+                    ResultSet indexesResultSet = dmd.getIndexInfo(schemaName, schemaName, tableName, false, true);                    
                     //printResultSet(indexesResultSet);
                     return indexesResultSet;
                     
@@ -109,28 +109,28 @@ public class DataManager {
                     
                 case TABLE_PRIVILEGES:
 //                  System.out.println("Cross-Reference (using Unique Constraint) Metadata:");
-                  ResultSet tablePrivilegesResultSet = dmd.getTablePrivileges(null , schemaName, tableName);
+                  ResultSet tablePrivilegesResultSet = dmd.getTablePrivileges(schemaName , schemaName, tableName);
                   //printResultSet(crossReferenceUniqueResultSet);
                   return tablePrivilegesResultSet;
                   
                   
                 case COLUMN_PRIVILEGES:
-                    System.out.println("Column Privileges Metadata:");
+                   // System.out.println("Column Privileges Metadata:");
                     ResultSet columnPrivilegesResultSet = dmd.getColumnPrivileges(connection.getCatalog(), schemaName, tableName, "%");                    
 //                    // printResultSet(columnPrivilegesResultSet);
                     return columnPrivilegesResultSet;
                 
-                case VERSION_COLUMNS:
-                    System.out.println("Column Versions Metadata:");
-                    ResultSet versionColumns = dmd.getVersionColumns(connection.getCatalog(), schemaName, tableName);                    
-//                    // printResultSet(columnPrivilegesResultSet);
-                    return versionColumns;    
+//                case VERSION_COLUMNS:
+//                    System.out.println("Column Versions Metadata:");
+//                    ResultSet versionColumns = dmd.getVersionColumns(connection.getCatalog(), schemaName, tableName);                    
+////                    // printResultSet(columnPrivilegesResultSet);
+//                    return versionColumns;    
                     
-                case TYPE_INFO:
-                    System.out.println("Type Info Metadata:");
-                    ResultSet typeInfo = dmd.getTypeInfo();                    
-//                    // printResultSet(columnPrivilegesResultSet);
-                    return typeInfo; 
+//                case TYPE_INFO:
+//                    System.out.println("Type Info Metadata:");
+//                    ResultSet typeInfo = dmd.getTypeInfo();                    
+////                    // printResultSet(columnPrivilegesResultSet);
+//                    return typeInfo; 
 
                 default:
                     System.out.println("Invalid typeOfData provided.");

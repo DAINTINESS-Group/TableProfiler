@@ -56,9 +56,9 @@ public class MetadataManager {
 					case EXPORTED_KEYS:
 						tStats.setPksReferedToOtherFks(counter);
 						break;
-					case CROSS_REFERENCE:
-						tStats.setRows(counter);
-						break;
+//					case CROSS_REFERENCE:
+//						tStats.setRows(counter);
+//						break;
 					case INDEXES:
 						tStats.setInds(counter);
 						break;
@@ -68,12 +68,12 @@ public class MetadataManager {
 					case COLUMN_PRIVILEGES:
 						tStats.setColPrvs(counter);
 						break;
-					case VERSION_COLUMNS:
-						tStats.setColPrvs(counter);
-						break;
-					case TYPE_INFO:
-						tStats.setColPrvs(counter);
-						break;
+//					case VERSION_COLUMNS:
+//						tStats.setColPrvs(counter);
+//						break;
+//					case TYPE_INFO:
+//						tStats.setColPrvs(counter);
+//						break;
 //					case BEST_ROW_IDENTIFIER:
 //						tStats.setRows(counter);
 //						break;
@@ -94,7 +94,7 @@ public class MetadataManager {
 			for (MetadataType typeOfData : typeOfDataList) {
 				ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, schemaName, tableName);
 				counter = metadata.addList(typeOfData, resultSet);
-				System.out.println(typeOfData + " : " + counter);
+				//System.out.println(typeOfData + " : " + counter);
 				switch (typeOfData) {
 				case TABLES:
 					tStats.setRows(counter);
@@ -111,9 +111,9 @@ public class MetadataManager {
 				case EXPORTED_KEYS:
 					tStats.setPksReferedToOtherFks(counter);
 					break;
-				case CROSS_REFERENCE:
-					tStats.setRows(counter);
-					break;
+//				case CROSS_REFERENCE:
+//					tStats.setRows(counter);
+//					break;
 				case INDEXES:
 					tStats.setInds(counter);
 					break;
@@ -123,12 +123,12 @@ public class MetadataManager {
 				case COLUMN_PRIVILEGES:
 					tStats.setColPrvs(counter);
 					break;
-				case VERSION_COLUMNS:
-					tStats.setColPrvs(counter);
-					break;
-				case TYPE_INFO:
-					tStats.setColPrvs(counter);
-					break;
+//				case VERSION_COLUMNS:
+//					tStats.setColPrvs(counter);
+//					break;
+//				case TYPE_INFO:
+//					tStats.setColPrvs(counter);
+//					break;
 //				case BEST_ROW_IDENTIFIER:
 //					tStats.setRows(counter);
 //					break;

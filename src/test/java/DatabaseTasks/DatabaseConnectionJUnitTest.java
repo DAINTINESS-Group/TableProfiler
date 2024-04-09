@@ -17,6 +17,7 @@ public class DatabaseConnectionJUnitTest {
     private static final String TEST_IP = "localhost:3306";
     private static final String TEST_USERNAME = "root";
     private static final String TEST_PASSWORD = "123456";
+    private static final String TEST_SCHEMA = "adventureworks";
 
     private Connection testConnection;
 
@@ -35,7 +36,7 @@ public class DatabaseConnectionJUnitTest {
         // Test connection establishment
 
         // Act
-        testConnection = DatabaseConnection.connect(TEST_IP, TEST_USERNAME, TEST_PASSWORD);
+        testConnection = DatabaseConnection.connect(TEST_IP, TEST_SCHEMA, TEST_USERNAME, TEST_PASSWORD);
 
         // Assert
         assertNotNull(testConnection);
@@ -52,7 +53,7 @@ public class DatabaseConnectionJUnitTest {
         // Test connection closure
 
         // Arrange
-        testConnection = DatabaseConnection.connect(TEST_IP, TEST_USERNAME, TEST_PASSWORD);
+        testConnection = DatabaseConnection.connect(TEST_IP, TEST_SCHEMA, TEST_USERNAME, TEST_PASSWORD);
 
         // Act
         DatabaseConnection.closeConnection();

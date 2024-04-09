@@ -54,7 +54,7 @@ public class MainProgram {
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new FlowLayout());
 
-        usernameField = new JTextField("root");
+        usernameField = new JTextField("reportUser");
         passwordField = new JPasswordField("123456");
         ipField = new JTextField("localhost:3306");
         tableNameField = new JTextField("ALL");//"salesorderheader");
@@ -122,7 +122,7 @@ public class MainProgram {
         String tableName = tableNameField.getText();
         String schemaName = schemaNameField.getText();
         //System.out.println("username :" +username+",password :"+password+", ip :"+ip);
-        Connection connection = DatabaseConnection.connect(ip, username, password);
+        Connection connection = DatabaseConnection.connect(ip, schemaName, username, password);
         metaManager = new MetadataManager();        
         ArrayList<MetadataType> tableTypes =  new ArrayList<MetadataType>();
         for (Map.Entry<MetadataType, JCheckBox> entry : checkboxMap.entrySet()) {

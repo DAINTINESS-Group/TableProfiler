@@ -18,7 +18,7 @@ public class TablesTest {
 
     @Test
     public void testTables() throws SQLException {
-        Connection connection = DatabaseConnection.connect("localhost:3306", "root", "123456");
+        Connection connection = DatabaseConnection.connect("localhost:3306", "adventureworks", "reportUser", "123456");
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.TABLES);

@@ -47,7 +47,7 @@ public class MainApp extends JFrame {
      */
     public MainApp() {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 600, 400);
+        setBounds(100, 100, 1024, 768);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -93,7 +93,7 @@ public class MainApp extends JFrame {
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new FlowLayout());
 
-        usernameField = new JTextField("root");
+        usernameField = new JTextField("reportUser");
         passwordField = new JPasswordField("123456");
         ipField = new JTextField("localhost:3306");
         tableNameField = new JTextField("ALL");//"salesorderheader");
@@ -138,7 +138,7 @@ public class MainApp extends JFrame {
         String tableName = tableNameField.getText();
         String schemaName = schemaNameField.getText();
 
-        Connection connection = DatabaseConnection.connect(ip, username, password);
+        Connection connection = DatabaseConnection.connect(ip, schemaName, username, password);
         metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         for (Map.Entry<MetadataType, JCheckBox> entry : checkboxMap.entrySet()) {
@@ -150,7 +150,7 @@ public class MainApp extends JFrame {
         }
         metaManager.createMetadata(tableTypes, schemaName, tableName, connection);
 
-        showMetadataResults();
+        //showMetadataResults();
         DatabaseConnection.closeConnection();
     }
 

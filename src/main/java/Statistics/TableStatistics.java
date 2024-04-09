@@ -8,9 +8,9 @@ public class TableStatistics {
 	private int uks = 0;
 	private int rows = 0;
 	private int inds = 0;
-	private int setTblPrvs = 0;
-	private int setColPrvs =0;
-	private int pksReferedToOtherFks = 0;
+	private int tblPrvs = 0;
+	private int colPrvs =0;
+	private int pksReferedToOtherFks=0;
 	
 		
 	public TableStatistics(String tableName, int columns, int pks, int fks, int uks, int rows, int inds) {
@@ -80,39 +80,35 @@ public class TableStatistics {
 		return tableName;
 	}
 	
-	public int getTblPrvs() {
-		return setTblPrvs;
-	}
-
-	public void setTblPrvs(int setTblPrvs) {
-		this.setTblPrvs = setTblPrvs;
-	}
-
 	public int getColPrvs() {
-		return setColPrvs;
+		return colPrvs;
 	}
 
-	public void setColPrvs(int setColPrvs) {
-		this.setColPrvs = setColPrvs;
+	public void setColPrvs(int colPrvs) {
+		this.colPrvs = colPrvs;
 	}
 
+	public int getTblPrvs() {
+		return tblPrvs;
+	}
+
+	public void setTblPrvs(int tblPrvs) {
+		this.tblPrvs = tblPrvs;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "The Table :"+tableName+" has :"+columns+"  columns, \t"+pks+" primary keys, "+fks+" foreign keys,\t "+/*, unique keys :"+uks+" number of rows :"+rows+"*/ +inds+" indexes, ";
-				/*+"\nReferred Priomary Keys :"+referedPks+" This Tables Primary Keys that are Referred to other table foreign keys :"+pksReferedToOtherFks;*/
+		return "The Table :"+tableName+" has :"+columns+"  columns,\t"+pks+" primary keys, \t"+fks+" foreign keys,\t"+uks+" unique keys"
+				+ ", \t"+ rows +" number of rows, \t"+inds
+				+" indexes, \t"+pksReferedToOtherFks+" This Tables Primary Keys that are Referred to other table foreign keys";
 	}
 
-//	public void setReferedPks(int counter) {
-//		this.referedPks = referedPks;		
-//	}
+	public int getPksReferedToOtherFks() {
+		return pksReferedToOtherFks;
+	}
 
 	public void setPksReferedToOtherFks(int pksReferedToOtherFks) {
 		this.pksReferedToOtherFks = pksReferedToOtherFks;
 	}
-
-	public Object getPksReferedToOtherFks() {
-		return pksReferedToOtherFks;
-	}
-	
 }

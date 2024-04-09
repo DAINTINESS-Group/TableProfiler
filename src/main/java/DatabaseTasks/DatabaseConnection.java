@@ -18,11 +18,11 @@ public class DatabaseConnection {
     private static Connection connection;
 
     // Method to establish a connection to the database
-    public static Connection connect(String ip, String username, String password) {
+    public static Connection connect(String ip, String schema, String username, String password) {
         try {
             // Register the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            ip = "jdbc:mysql://"+ip+"/adventureworks";
+            ip = "jdbc:mysql://"+ip+"/"+schema;
             // Open a connection
             connection = DriverManager.getConnection(ip, username, password);
             return connection;
