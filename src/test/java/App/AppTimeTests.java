@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class AppTimeTests {
 
     public static void main(String[] args) {
-        String username = "root";
+        String username = "reportUser";
         String password = "123456";
         String ip = "localhost:3306";
         String tableName = "ALL";

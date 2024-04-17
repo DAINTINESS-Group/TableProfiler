@@ -15,7 +15,7 @@ import DatabaseTasks.DatabaseConnection;
 public class DatabaseConnectionJUnitTest {
 
     private static final String TEST_IP = "localhost:3306";
-    private static final String TEST_USERNAME = "root";
+    private static final String TEST_USERNAME = "reportUser";
     private static final String TEST_PASSWORD = "123456";
     private static final String TEST_SCHEMA = "adventureworks";
 

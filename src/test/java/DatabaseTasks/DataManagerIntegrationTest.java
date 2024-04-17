@@ -24,7 +24,7 @@ public class DataManagerIntegrationTest {
     public void setUp() throws SQLException {
         // Establish a connection to your testing database
         String jdbcUrl = "jdbc:mysql://localhost:3306/adventureworks";
-        String username = "root";
+        String username = "reportUser";
         String password = "123456";
 
         connection = DriverManager.getConnection(jdbcUrl, username, password);
