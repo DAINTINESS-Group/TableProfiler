@@ -1,4 +1,4 @@
-package App;
+package experiments;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import Model.MetadataManager;
 import java.util.List;
 import java.util.ArrayList;
 
-public class AppTimeTests {
+public class ExperimentsOverMetadataSize {
 
     public static void main(String[] args) {
         String username = "reportUser";
