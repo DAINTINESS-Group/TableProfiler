@@ -2,13 +2,7 @@ package DatabaseTasks;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-//import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.RowSetProvider;
-
 import com.mysql.cj.jdbc.DatabaseMetaData;
 import Enums.MetadataType;
 
@@ -30,9 +24,9 @@ public class DataManager {
 //	    }
 //	}
 	
-	public ResultSet extractTableMetadata(Connection connection, MetadataType typeOfData, String schemaName, String tableName) {
+	public ResultSet extractTableMetadata(String ip, String schema, String username, String password, MetadataType typeOfData, String schemaName, String tableName) {
         try {
-        	
+        		Connection connection = DatabaseConnection.connect(ip, schema, username, password);
         		DatabaseMetaData dmd = (DatabaseMetaData) connection.getMetaData();
         		// get tables        		  
         		  //ArrayList<String> databaseTables = new ArrayList(); 

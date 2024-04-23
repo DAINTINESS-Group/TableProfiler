@@ -22,7 +22,7 @@ public class IndexInfoTest {
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.INDEXES);
-        metaManager.createMetadata(tableTypes, "adventureworks", "contactcreditcard", connection);
+        metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes, "adventureworks", "contactcreditcard");
         ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("INDEXES");
 
         // Execute the SQL query

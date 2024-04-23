@@ -22,7 +22,7 @@ public class PrimaryKeysTest {
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.PRIMARY_KEYS);
-        metaManager.createMetadata(tableTypes, "adventureworks", "contactcreditcard", connection);
+        metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes, "adventureworks", "contactcreditcard");
         ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("PRIMARY_KEYS");
         //System.out.println(resultSet.getShort("KEY_SEQ"));
         // Execute the SQL query

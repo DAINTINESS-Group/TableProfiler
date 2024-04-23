@@ -22,7 +22,7 @@ public class ExportedKeysTest {
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.EXPORTED_KEYS);
-        metaManager.createMetadata(tableTypes, "adventureworks", "creditcard", connection);
+        metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes, "adventureworks", "creditcard");
         ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("EXPORTED_KEYS");
         
         // Execute the SQL query

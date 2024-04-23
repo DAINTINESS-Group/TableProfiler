@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class TablePrivilegesTest {
 
@@ -22,7 +21,7 @@ public class TablePrivilegesTest {
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.TABLE_PRIVILEGES);
-        metaManager.createMetadata(tableTypes, "adventureworks", "contactcreditcard", connection);
+        metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes, "adventureworks", "contactcreditcard");
         ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("TABLE_PRIVILEGES");
 
         // Execute the SQL query

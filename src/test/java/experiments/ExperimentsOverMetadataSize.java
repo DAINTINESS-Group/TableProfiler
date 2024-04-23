@@ -1,17 +1,11 @@
 package experiments;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import DatabaseTasks.DatabaseConnection;
 import Enums.MetadataType;
 import Model.MetadataManager;
-
 import java.util.List;
-import java.util.ArrayList;
 
 public class ExperimentsOverMetadataSize {
 
@@ -37,7 +31,6 @@ public class ExperimentsOverMetadataSize {
 
             for (int i = 0; i < numTests; i++) {
                 long connectionStartTime = System.currentTimeMillis();
-                Connection connection = DatabaseConnection.connect(ip, schemaName, username, password);
                 long connectionEndTime = System.currentTimeMillis();
                 long connectionElapsedTime = connectionEndTime - connectionStartTime;
                 totalConnectionTime += connectionElapsedTime;
@@ -46,7 +39,7 @@ public class ExperimentsOverMetadataSize {
                 MetadataManager metaManager = new MetadataManager();
                 
                 try {
-                    metaManager.createMetadata(tableTypes, schemaName, tableName, connection);
+                    metaManager.createMetadata(ip, schemaName, username, password, tableTypes, schemaName, tableName);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

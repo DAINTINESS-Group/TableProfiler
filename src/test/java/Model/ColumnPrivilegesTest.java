@@ -1,19 +1,15 @@
 package Model;
 
 import org.junit.jupiter.api.Test;
-
 import DatabaseTasks.DatabaseConnection;
 import Enums.MetadataType;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 public class ColumnPrivilegesTest {
 
@@ -23,7 +19,7 @@ public class ColumnPrivilegesTest {
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.COLUMN_PRIVILEGES);
-        metaManager.createMetadata(tableTypes, "adventureworks", "contactcreditcard", connection);
+        metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes, "adventureworks", "contactcreditcard");
         ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("COLUMN_PRIVILEGES");
         // Execute the SQL query
         try (PreparedStatement statement = connection.prepareStatement("select \r\n"

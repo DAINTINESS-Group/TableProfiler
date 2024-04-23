@@ -21,7 +21,7 @@ public class ColumnMetadataTest {
         	MetadataManager metaManager = new MetadataManager();
             ArrayList<MetadataType> tableTypes =  new ArrayList<MetadataType>();
         	tableTypes.add(MetadataType.COLUMNS);
-        	metaManager.createMetadata(tableTypes,"adventureworks", "contactcreditcard", connection);
+        	metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes,"adventureworks", "contactcreditcard");
         	ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("COLUMNS");
             // Execute the SQL query
             try (PreparedStatement statement = connection.prepareStatement("select "

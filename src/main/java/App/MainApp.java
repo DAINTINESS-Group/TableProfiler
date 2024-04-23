@@ -2,20 +2,17 @@ package App;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import DatabaseTasks.DatabaseConnection;
 import Enums.MetadataType;
 import Model.MetadataManager;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("serial")
 public class MainApp extends JFrame {
 
     private JTextField usernameField;
@@ -137,8 +134,7 @@ public class MainApp extends JFrame {
         String ip = ipField.getText();
         String tableName = tableNameField.getText();
         String schemaName = schemaNameField.getText();
-
-        Connection connection = DatabaseConnection.connect(ip, schemaName, username, password);
+        
         metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         for (Map.Entry<MetadataType, JCheckBox> entry : checkboxMap.entrySet()) {
@@ -148,17 +144,7 @@ public class MainApp extends JFrame {
                 tableTypes.add(type);
             }
         }
-        metaManager.createMetadata(tableTypes, schemaName, tableName, connection);
+        metaManager.createMetadata(ip, schemaName, username, password, tableTypes, schemaName, tableName);
 
-        //showMetadataResults();
-        DatabaseConnection.closeConnection();
-    }
-
-    private void showMetadataResults() throws SQLException {
-        JTextArea textArea = new JTextArea(metaManager.toString());
-        JScrollPane scrollPane = new JScrollPane(textArea);
-
-        contentPane.add(scrollPane, BorderLayout.CENTER);
-        contentPane.revalidate();
     }
 }

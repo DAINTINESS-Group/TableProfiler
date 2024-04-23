@@ -2,15 +2,12 @@ package App;
 
 import javax.swing.*;
 
-import DatabaseTasks.DatabaseConnection;
 import Enums.MetadataType;
-import Model.Metadata;
 import Model.MetadataManager;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,7 +119,6 @@ public class MainProgram {
         String tableName = tableNameField.getText();
         String schemaName = schemaNameField.getText();
         //System.out.println("username :" +username+",password :"+password+", ip :"+ip);
-        Connection connection = DatabaseConnection.connect(ip, schemaName, username, password);
         metaManager = new MetadataManager();        
         ArrayList<MetadataType> tableTypes =  new ArrayList<MetadataType>();
         for (Map.Entry<MetadataType, JCheckBox> entry : checkboxMap.entrySet()) {
@@ -133,12 +129,11 @@ public class MainProgram {
                 tableTypes.add(type);
             }
         }
-        metaManager.createMetadata(tableTypes, schemaName, tableName, connection);
+        metaManager.createMetadata(ip, schemaName, username, password, tableTypes, schemaName, tableName);
         //System.out.println(metaManager.toString());
         showMetadataDialog();      	
         
-        
-        DatabaseConnection.closeConnection();    
+            
     }
 
     private void showMetadataDialog() throws SQLException {

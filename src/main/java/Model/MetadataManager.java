@@ -4,13 +4,9 @@ import DatabaseTasks.DataManager;
 import Enums.MetadataType;
 import Statistics.DatabaseStatistics;
 import Statistics.TableStatistics;
-
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.mysql.cj.jdbc.DatabaseMetaData;
 
 public class MetadataManager {
 
@@ -25,20 +21,20 @@ public class MetadataManager {
 		return metadataList;
 	}
 
-	public void createMetadata(ArrayList<MetadataType> typeOfDataList, String schemaName, String tableName, Connection connection)
+	public void createMetadata(String ip, String schema, String username, String password, ArrayList<MetadataType> typeOfDataList, String schemaName, String tableName)
 			throws SQLException {
 		DataManager dataManager = new DataManager();
 		int counter = 0;
 		TableStatistics tStats = null ;
 		if (tableName.equals("ALL")) {
-			ResultSet allTableNames = dataManager.extractTableMetadata(connection, MetadataType.TABLES, schemaName, tableName);
+			ResultSet allTableNames = dataManager.extractTableMetadata(ip, schema, username, password, MetadataType.TABLES, schemaName, tableName);
 			while (allTableNames.next()) {
 				String tableNameS = allTableNames.getString("TABLE_NAME");
 				tStats = new TableStatistics(tableNameS, 0, 0, 0, 0, 0, 0);
 				Metadata metadata = new Metadata(tableNameS);
 
 				for (MetadataType typeOfData : typeOfDataList) {
-					ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, schemaName, tableNameS);
+					ResultSet resultSet = dataManager.extractTableMetadata(ip, schema, username, password, typeOfData, schemaName, tableNameS);
 					counter = metadata.addList(typeOfData, resultSet);
 					switch (typeOfData) {
 					case TABLES:
@@ -92,7 +88,7 @@ public class MetadataManager {
 			tStats = new TableStatistics(tableName, 0, 0, 0, 0, 0, 0);
 			Metadata metadata = new Metadata(tableName);			
 			for (MetadataType typeOfData : typeOfDataList) {
-				ResultSet resultSet = dataManager.extractTableMetadata(connection, typeOfData, schemaName, tableName);
+				ResultSet resultSet = dataManager.extractTableMetadata(ip, schema, username, password, typeOfData, schemaName, tableName);
 				counter = metadata.addList(typeOfData, resultSet);
 				//System.out.println(typeOfData + " : " + counter);
 				switch (typeOfData) {

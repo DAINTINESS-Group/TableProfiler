@@ -3,12 +3,7 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
-
 import Enums.MetadataType;
 
 public class Metadata {
@@ -19,8 +14,8 @@ public class Metadata {
 
     public Metadata(String tableName) {
         this.tableName = tableName;
-        this.metadataMap = new ArrayList();
-        this.metadataTypes = new ArrayList();
+        this.metadataMap = new ArrayList<ResultSet>();
+        this.metadataTypes = new ArrayList<String>();
     }
 
     public int addList(MetadataType typeOfData, ResultSet resultSet) throws SQLException { 

@@ -22,7 +22,7 @@ public class ImportedKeysTest {
         MetadataManager metaManager = new MetadataManager();
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         tableTypes.add(MetadataType.IMPORTED_KEYS);
-        metaManager.createMetadata(tableTypes, "adventureworks", "contactcreditcard", connection);
+        metaManager.createMetadata("localhost:3306", "adventureworks", "reportUser", "123456", tableTypes, "adventureworks", "contactcreditcard");
         ResultSet resultSet = metaManager.getMetadataList().get(0).getResultSet("IMPORTED_KEYS");
 
         // Execute the SQL query
