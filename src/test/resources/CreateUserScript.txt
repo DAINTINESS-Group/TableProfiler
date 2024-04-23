@@ -1,5 +1,5 @@
 CREATE USER 'reportUser'@'localhost' IDENTIFIED BY '123456';
-GRANT select ON information_schema.* TO 'reportUser'@'localhost';
-GRANT select ON schema100.* TO 'reportUser'@'localhost';
-GRANT select ON schema1000.* TO 'reportUser'@'localhost';
-GRANT select ON adventureworks.* TO 'reportUser'@'localhost';
+GRANT ALL PRIVILEGES ON information_schema.* TO 'reportUser'@'localhost';
+GRANT ALL PRIVILEGES ON schema100.* TO 'reportUser'@'localhost';
+GRANT ALL PRIVILEGES ON schema1000.* TO 'reportUser'@'localhost';
+GRANT ALL PRIVILEGES ON adventureworks.* TO 'reportUser'@'localhost';
