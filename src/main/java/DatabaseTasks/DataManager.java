@@ -8,25 +8,15 @@ import Enums.MetadataType;
 
 public class DataManager {
 	
-	 
+	Connection connection;
 	
-//	private void printResultSet(ResultSet resultSet) throws SQLException {
-//	    while (resultSet.next()) {
-//	        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-//	        int columnCount = resultSetMetaData.getColumnCount();
-//
-//	        for (int i = 1; i <= columnCount; i++) {
-//	            String columnName = resultSetMetaData.getColumnName(i);
-//	            String columnValue = resultSet.getString(i);
-//	           // System.out.println("\t" + columnName + ": " + columnValue);
-//	        }
-//	        System.out.println();
-//	    }
-//	}
-	
-	public ResultSet extractTableMetadata(String ip, String schema, String username, String password, MetadataType typeOfData, String schemaName, String tableName) {
+	public DataManager(String ip, String schema, String username, String password) {		
+		this.connection = DatabaseConnection.connect(ip, schema, username, password);;
+	}
+
+	public ResultSet extractTableMetadata(MetadataType typeOfData, String schemaName, String tableName) {
         try {
-        		Connection connection = DatabaseConnection.connect(ip, schema, username, password);
+        		//connection = DatabaseConnection.connect(ip, schema, username, password);
         		DatabaseMetaData dmd = (DatabaseMetaData) connection.getMetaData();
         		// get tables        		  
         		  //ArrayList<String> databaseTables = new ArrayList(); 
@@ -128,10 +118,15 @@ public class DataManager {
 
                 default:
                     System.out.println("Invalid typeOfData provided.");
-        		}            
+        		}        		
         } catch (SQLException e) {
             e.printStackTrace();
         }
-		return null;
+		return null;	
+		
     }
+	
+	public void closeConnection() {
+		((DataManager) connection).closeConnection();
+	}
 }

@@ -47,6 +47,7 @@ public class Metadata {
     }
 
     private String resultSetToString(ResultSet resultSet) throws SQLException {
+    	resultSet.first();
         StringBuilder result = new StringBuilder();
         ResultSetMetaData metaData = (ResultSetMetaData) resultSet.getMetaData();
         int columnCount = metaData.getColumnCount();
@@ -69,6 +70,14 @@ public class Metadata {
 
 	public String getTableName() {		
 		return this.tableName;
+	}	
+	
+	public ArrayList<ResultSet> getMetadataMap() {		
+		return this.metadataMap;
+	}	
+	
+	public ArrayList<String> getMetadataTypese() {		
+		return this.metadataTypes;
 	}	
 	
 }

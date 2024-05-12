@@ -18,7 +18,7 @@ public class DatabaseStatisticsTest {
 
     @Test
     public void testAddTableStatistics() {
-        TableStatistics tableStats = new TableStatistics("TestTable", 5, 2, 1, 1, 100, 3);
+        TableStatistics tableStats = new TableStatistics("TestTable", 5, 2, 1, 1, 100, 3, 4);
         databaseStats.addTableStatistics(tableStats);
 
         assertEquals(1, databaseStats.getDatabaseStats().size());
@@ -26,47 +26,43 @@ public class DatabaseStatisticsTest {
 
     @Test
     public void testToString() {
-        TableStatistics tableStats1 = new TableStatistics("Table1", 5, 2, 1, 1, 100, 3);
-        TableStatistics tableStats2 = new TableStatistics("Table2", 8, 3, 2, 2, 150, 4);
-        databaseStats.addTableStatistics(tableStats1);
-        databaseStats.addTableStatistics(tableStats2);
+        TableStatistics tableStats1 = new TableStatistics("Table1", 5, 2, 1, 1, 100, 3, 4);
+        databaseStats.addTableStatistics(tableStats1);       
 
-        String expected = "The Table :Table1 has :5  columns, \t2 primary keys, 1 foreign keys,\t 3 indexes, \n"
-                + "The Table :Table2 has :8  columns, \t3 primary keys, 2 foreign keys,\t 4 indexes, \n";
-
+        String expected = "The Table :"+"Table1"+" has :"+5+"  columns,\t"+2+" primary keys, \t"+1+" exported keys,\t"+1+" imported keys"+ ", \t"+ 100+" indexes, \t"+4+" column privileges, \t"+3+" table privileges.\n";
+        
         assertEquals(expected, databaseStats.toString());
     }
 
     @Test
     public void testUpdateValue() {
-        TableStatistics tableStats = new TableStatistics("TestTable", 5, 2, 1, 1, 100, 3);
-        databaseStats.addTableStatistics(tableStats);
-
+        TableStatistics tableStats = new TableStatistics("TestTable", 5, 2, 1, 1, 100, 3, 4);
+        databaseStats.addTableStatistics(tableStats);        
         // Update the number of columns for "TestTable"
-        databaseStats.updateValue(MetadataType.COLUMNS, "TestTable", 10, null);
+        databaseStats.updateValue(MetadataType.COLUMNS, 10, "TestTable");
 
         assertEquals(10, databaseStats.getDatabaseStats().get(0).getColumns());
     }
 
     @Test
     public void testUpdateMultipleValues() {
-        TableStatistics tableStats = new TableStatistics("TestTable", 5, 2, 1, 1, 100, 3);
+        TableStatistics tableStats = new TableStatistics("TestTable", 5, 2, 1, 1, 100, 3, 4);
         databaseStats.addTableStatistics(tableStats);
 
         // Update multiple values for "TestTable"
-        databaseStats.updateValue(MetadataType.COLUMNS, "TestTable", 10, null);
-        databaseStats.updateValue(MetadataType.PRIMARY_KEYS, "TestTable", 3, null);
-        databaseStats.updateValue(MetadataType.EXPORTED_KEYS, "TestTable", 2, null);
+        databaseStats.updateValue(MetadataType.COLUMNS, 10, "TestTable");
+        databaseStats.updateValue(MetadataType.PRIMARY_KEYS, 3, "TestTable");
+        databaseStats.updateValue(MetadataType.EXPORTED_KEYS, 2, "TestTable");
 
         assertEquals(10, databaseStats.getDatabaseStats().get(0).getColumns());
-        assertEquals(3, databaseStats.getDatabaseStats().get(0).getPks());
-        assertEquals(2, databaseStats.getDatabaseStats().get(0).getFks());
+        assertEquals(3, databaseStats.getDatabaseStats().get(0).getPrimary_keys());
+        assertEquals(2, databaseStats.getDatabaseStats().get(0).getExported_keys());
     }
 
     @Test
     public void testUpdateValueForNonExistingTable() {
         // Try to update values for a table that doesn't exist
-        databaseStats.updateValue(MetadataType.COLUMNS, "NonExistingTable", 10, null);
+        databaseStats.updateValue(MetadataType.COLUMNS, 10, "NonExistingTable");
 
         assertEquals(0, databaseStats.getDatabaseStats().size());
     }

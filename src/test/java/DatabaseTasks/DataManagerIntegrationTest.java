@@ -2,7 +2,6 @@ package DatabaseTasks;
 import static org.junit.Assert.*;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,8 +22,8 @@ public class DataManagerIntegrationTest {
 
     @Before
     public void setUp() throws SQLException {
-        connection = DriverManager.getConnection(jdbcUrl, username, password);
-        dataManager = new DataManager();
+    	dataManager = new DataManager("localhost:3306", schemaName, username, password);
+        //connection = DriverManager.getConnection(jdbcUrl, username, password);
     }
 
     @After
@@ -38,7 +37,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForTables() throws SQLException {
         
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.TABLES, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.TABLES, schemaName, tableName);
 
         assertNotNull(resultSet);
 
@@ -48,7 +47,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForColumns() throws SQLException {
    
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.COLUMNS, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.COLUMNS, schemaName, tableName);
 
         assertNotNull(resultSet);
 
@@ -58,7 +57,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForPrimaryKeys() throws SQLException {
    
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.PRIMARY_KEYS, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.PRIMARY_KEYS, schemaName, tableName);
 
         assertNotNull(resultSet);
 
@@ -68,7 +67,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForImportedKeys() throws SQLException {
        
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.IMPORTED_KEYS, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.IMPORTED_KEYS, schemaName, tableName);
 
         assertNotNull(resultSet);
 
@@ -78,7 +77,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForExportedKeys() throws SQLException {
      
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.EXPORTED_KEYS, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.EXPORTED_KEYS, schemaName, tableName);
 
         assertNotNull(resultSet);
 
@@ -88,7 +87,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForIndexes() throws SQLException {
    
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.INDEXES, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.INDEXES, schemaName, tableName);
 
         assertNotNull(resultSet);
 
@@ -98,7 +97,7 @@ public class DataManagerIntegrationTest {
     @Test
     public void testExtractTableMetadataForTablePrivileges() throws SQLException {
     
-        ResultSet resultSet = dataManager.extractTableMetadata("localhost:3306", schemaName, username, password, MetadataType.TABLE_PRIVILEGES, schemaName, tableName);
+        ResultSet resultSet = dataManager.extractTableMetadata(MetadataType.TABLE_PRIVILEGES, schemaName, tableName);
 
         assertNotNull(resultSet);
 

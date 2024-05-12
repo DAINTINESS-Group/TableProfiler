@@ -11,8 +11,8 @@ public class DatabaseStatistics {
 		databaseStats.add(tStats);		
 	}
 	
-	public void addTableStatistics(String TableName, int columns, int pks, int fks, int uks, int rows, int inds) {
-		TableStatistics ts = new TableStatistics(TableName, columns, pks, fks, uks, rows, inds);		
+	public void addTableStatistics(String TableName, int columns, int primary_keys, int exported_keys, int imported_keys, int indxs, int tblPrvs, int colPrvs) {
+		TableStatistics ts = new TableStatistics(TableName, columns, primary_keys, exported_keys, imported_keys, indxs, tblPrvs, colPrvs);		
 		databaseStats.add(ts);
 	}
 	
@@ -29,22 +29,33 @@ public class DatabaseStatistics {
 		return retString.toString();
 	}
 
-	public void updateValue(MetadataType typeOfData, String valueType, int value, String tableName) {
+	public void updateValue(MetadataType typeOfData, int value, String tableName) {
 		for(TableStatistics tName : databaseStats) {
 			if(tName.getTableName().equals(tableName)) {
 				switch(typeOfData) {
 					case COLUMNS:
 						tName.setColumns(value);
+						break;
 					case PRIMARY_KEYS:
-						tName.setPks(value);
+						tName.setPrimary_keys(value);
+						break;
 					case EXPORTED_KEYS:
-						tName.setUks(value);
+						tName.setExported_keys(value);
+						break;
 					case IMPORTED_KEYS:
-						tName.setFks(value);
+						tName.setImported_keys(value);
+						break;
 					case INDEXES:
-						tName.setInds(value);
+						tName.setIndxs(value);
+						break;
+					case COLUMN_PRIVILEGES:
+						tName.setColPrvs(value);
+						break;
+					case TABLE_PRIVILEGES:
+						tName.setTblPrvs(value);
+						break;
 					default:
-						System.out.println("Flase value on DatabaseStatistics at updateValue method");
+						System.out.println("False value on DatabaseStatistics at updateValue method on table: "+tableName);						
 				}
 			}
 		}		

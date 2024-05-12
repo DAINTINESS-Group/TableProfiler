@@ -3,25 +3,23 @@ package Statistics;
 public class TableStatistics {
 	private String tableName="";
 	private int columns = 0;
-	private int pks = 0;
-	private int fks = 0;
-	private int uks = 0;
-	private int rows = 0;
-	private int inds = 0;
+	private int primary_keys = 0;
+	private int exported_keys = 0;
+	private int imported_keys=0;
+	private int indxs = 0;
 	private int tblPrvs = 0;
 	private int colPrvs =0;
-	private int pksReferedToOtherFks=0;
 	
 		
-	public TableStatistics(String tableName, int columns, int pks, int fks, int uks, int rows, int inds) {
-		super();
+	public TableStatistics(String tableName, int columns, int primary_keys, int exported_keys, int imported_keys, int indxs,int tblPrvs,int colPrvs ) {		
 		this.tableName = tableName;
 		this.columns = columns;
-		this.fks = fks;
-		this.pks = pks;		
-		this.uks = uks;
-		this.rows = rows;
-		this.inds = inds;
+		this.exported_keys = exported_keys;
+		this.primary_keys = primary_keys;
+		this.imported_keys = imported_keys;
+		this.indxs = indxs;
+		this.tblPrvs = tblPrvs;
+		this.colPrvs = colPrvs;
 	}
 	
 	public TableStatistics(String tableName) {
@@ -36,44 +34,36 @@ public class TableStatistics {
 		this.columns = columns;
 	}
 
-	public int getPks() {
-		return pks;
+	public int getPrimary_keys() {
+		return primary_keys;
 	}
 
-	public void setPks(int pks) {
-		this.pks = pks;
+	public void setPrimary_keys(int primary_keys) {
+		this.primary_keys = primary_keys;
 	}
 
-	public int getFks() {
-		return fks;
+	public int getExported_keys() {
+		return exported_keys;
 	}
 
-	public void setFks(int fks) {
-		this.fks = fks;
+	public void setExported_keys(int exported_keys) {
+		this.exported_keys = exported_keys;
 	}
 
-	public int getUks() {
-		return uks;
+	public int getImported_keys() {
+		return imported_keys;
 	}
 
-	public void setUks(int uks) {
-		this.uks = uks;
+	public void setImported_keys(int imported_keys) {
+		this.imported_keys = imported_keys;
+	}
+	
+	public int getIndxs() {
+		return indxs;
 	}
 
-	public int getRows() {
-		return rows;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	public int getInds() {
-		return inds;
-	}
-
-	public void setInds(int inds) {
-		this.inds = inds;
+	public void setIndxs(int indxs) {
+		this.indxs = indxs;
 	}
 
 	public String getTableName() {
@@ -99,16 +89,6 @@ public class TableStatistics {
 	
 	@Override
 	public String toString() {
-		return "The Table :"+tableName+" has :"+columns+"  columns,\t"+pks+" primary keys, \t"+fks+" foreign keys,\t"+uks+" unique keys"
-				+ ", \t"+ rows +" number of rows, \t"+inds
-				+" indexes, \t"+pksReferedToOtherFks+" This Tables Primary Keys that are Referred to other table foreign keys";
-	}
-
-	public int getPksReferedToOtherFks() {
-		return pksReferedToOtherFks;
-	}
-
-	public void setPksReferedToOtherFks(int pksReferedToOtherFks) {
-		this.pksReferedToOtherFks = pksReferedToOtherFks;
-	}
+		return "The Table :"+tableName+" has :"+columns+"  columns,\t"+primary_keys+" primary keys, \t"+exported_keys+" exported keys,\t"+imported_keys+" imported keys"+ ", \t"+ indxs+" indexes, \t"+colPrvs+" column privileges, \t"+tblPrvs+" table privileges.";
+	}	
 }
