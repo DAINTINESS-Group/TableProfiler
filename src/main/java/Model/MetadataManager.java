@@ -2,7 +2,7 @@ package Model;
 
 import DatabaseTasks.DataManager;
 import Enums.MetadataType;
-import FileUtilities.FileUtils;
+import Repoter.FileUtils;
 import Statistics.DatabaseStatistics;
 import Statistics.TableStatistics;
 import java.sql.ResultSet;
@@ -46,7 +46,7 @@ public class MetadataManager {
 			ResultSet allTableNames = dataManager.extractTableMetadata( MetadataType.TABLES, schemaName, tableName);
 			while (allTableNames.next()) {
 				String tableNameS = allTableNames.getString("TABLE_NAME");
-				System.out.println("while (allTableNames.next()) { -- >>"+tableNameS);
+				//System.out.println("while (allTableNames.next()) { -- >>"+tableNameS);
 				tStats = new TableStatistics(tableNameS, 0, 0, 0, 0, 0, 0, 0);
 				Metadata metadata;
 				if (!isTableExistsInMetadataList(tableName)) {
@@ -106,7 +106,7 @@ public class MetadataManager {
 				metadata = getMetadataObject(tableName);
 			}			
 			for (MetadataType typeOfData : typeOfDataList) {
-				System.out.println("Insite metadata manager ---> "+typeOfData.toString());
+				//System.out.println("Insite metadata manager ---> "+typeOfData.toString());
 				ResultSet resultSet = dataManager.extractTableMetadata(typeOfData, schemaName, tableName);
 				metadata.addList(typeOfData, resultSet);
 				resultSet.last();
@@ -161,16 +161,14 @@ public class MetadataManager {
 		return retValue.toString();	
 	}
 	
-	public void printMetadatalistTables() {
-		for (Metadata met : metadataList) {
-			System.out.println("inside MetadataManager ---> "+met.getTableName());
-			ArrayList<ResultSet> metadataMap = met.getMetadataMap();
-			ArrayList<String> metadataTypes = met.getMetadataTypese();
-//			for(String res : metadataTypes) {
-//				System.out.println(met.getTableName());
-//			}
-		}
-	}
+//	public void printMetadatalistTables() {
+//		for (Metadata met : metadataList) {
+//			System.out.println("inside MetadataManager ---> "+met.getTableName());
+////			for(String res : metadataTypes) {
+////				System.out.println(met.getTableName());
+////			}
+//		}
+//	}
 	
 	public void writeToFile(String metadata, String filePath) {
 		FileUtils.writeToFile(metadata, filePath);

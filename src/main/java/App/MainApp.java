@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -166,34 +165,6 @@ public class MainApp extends JFrame {
         return checkboxPanel;
     }
 
-//    private JPanel createFilePanel() {
-//        JPanel filePanel = new JPanel();
-//        filePanel.setBorder(new TitledBorder(null, "File Information", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-//        filePanel.setLayout(new GridLayout(3, 2, 10, 10)); // Increased gap between rows and columns
-//
-//        JTextField filePathField = new JTextField("file/path", 20);
-//        JTextField fileNameField = new JTextField("filename", 20);
-//        JButton copyButton = new JButton("Copy");
-//        
-//        copyButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String filePath = filePathField.getText();
-//                String fileName = fileNameField.getText();
-//                String metadataString = metaManager.toString();
-//                metaManager.writeToFile(metadataString, filePath+"\\"+fileName);
-//            }
-//        });
-//
-//        filePanel.add(new JLabel("File Path:"));
-//        filePanel.add(filePathField);
-//        filePanel.add(new JLabel("File Name:"));
-//        filePanel.add(fileNameField);
-//        filePanel.add(new JLabel()); // Empty label for spacing
-//        filePanel.add(copyButton);
-//
-//        return filePanel;
-//    }
 
     private void displayMetadataResults() throws SQLException {
         // Retrieve credentials from fields
@@ -222,7 +193,7 @@ public class MainApp extends JFrame {
         // Show metadata dialog
         showMetadataDialog();
         // Print metadata tables
-        metaManager.printMetadatalistTables();
+        //metaManager.printMetadatalistTables();
     }
 
     private void showMetadataDialog() throws SQLException {

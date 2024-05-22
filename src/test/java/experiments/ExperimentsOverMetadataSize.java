@@ -16,15 +16,19 @@ public class ExperimentsOverMetadataSize {
         String tableName = "ALL";
         List<String> schemaNames = new ArrayList<>();
         schemaNames.add("adventureworks");
-        schemaNames.add("schema100"); 
+        schemaNames.add("schema100");
+        schemaNames.add("schema500");
         schemaNames.add("schema1000"); // Add more schema names as needed
         int numTests = 5; // Number of consecutive runs
         
         ArrayList<MetadataType> tableTypes = new ArrayList<>();
         for(MetadataType t : MetadataType.values()) {
             tableTypes.add(t);
-            System.out.println(tableTypes.get(0).toString());
+           // System.out.println(tableTypes.get(0).toString());
 
+        
+        //tableTypes.remove(0);
+        }
         for (String schemaName : schemaNames) {
             long totalConnectionTime = 0;
             long totalMetadataTime = 0;
@@ -55,8 +59,6 @@ public class ExperimentsOverMetadataSize {
             double averageMetadataTime = (double) totalMetadataTime / numTests;
             System.out.println("Schema: " + schemaName + ", Average connection delay time: " + averageConnectionTime + " ms");
             System.out.println("Schema: " + schemaName + ", Average metadata creation time: " + averageMetadataTime + " ms");
-        }
-        tableTypes.remove(0);
         }
     }
 }
