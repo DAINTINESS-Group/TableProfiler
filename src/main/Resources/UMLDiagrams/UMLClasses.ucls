@@ -1,156 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="App.MainApp" project="TableProfiler" 
-    file="/TableProfiler/src/main/java/App/MainApp.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="483" y="194"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="DatabaseTasks.DatabaseConnection" project="TableProfiler" 
+  <class id="1" language="java" name="DatabaseTasks.DatabaseConnection" project="TableProfiler" 
     file="/TableProfiler/src/main/java/DatabaseTasks/DatabaseConnection.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="908" y="869"/>    
+    <position height="-1" width="-1" x="231" y="1108"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="DatabaseTasks.DataManager" project="TableProfiler" 
+  <class id="2" language="java" name="DatabaseTasks.DataManager" project="TableProfiler" 
     file="/TableProfiler/src/main/java/DatabaseTasks/DataManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="902" y="685"/>    
+    <position height="-1" width="-1" x="233" y="880"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="DatabaseTasks.GenerateDDLScript" project="TableProfiler" 
+  <class id="3" language="java" name="DatabaseTasks.GenerateDDLScript" project="TableProfiler" 
     file="/TableProfiler/src/main/java/DatabaseTasks/GenerateDDLScript.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="148" y="130"/>    
+    <position height="-1" width="-1" x="716" y="79"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="5" language="java" name="Enums.MetadataType" project="TableProfiler" 
+  <enumeration id="4" language="java" name="Enums.MetadataType" project="TableProfiler" 
     file="/TableProfiler/src/main/java/Enums/MetadataType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="796" y="1111"/>    
+    <position height="-1" width="-1" x="850" y="463"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="6" language="java" name="Enums.SQLTypeMapper" project="TableProfiler" 
-    file="/TableProfiler/src/main/java/Enums/SQLTypeMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="148" y="5"/>    
+  <class id="5" language="java" name="App.MainApp" project="TableProfiler" 
+    file="/TableProfiler/src/main/java/App/MainApp.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="425" y="181"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="Model.Metadata" project="TableProfiler" 
+  <class id="6" language="java" name="Model.Metadata" project="TableProfiler" 
     file="/TableProfiler/src/main/java/Model/Metadata.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="172" y="742"/>    
+    <position height="-1" width="-1" x="534" y="940"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="Model.MetadataManager" project="TableProfiler" 
-    file="/TableProfiler/src/main/java/Model/MetadataManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="484" y="491"/>    
+  <class id="7" language="java" name="Reporter.Reporter" project="TableProfiler" 
+    file="/TableProfiler/src/main/java/Reporter/Reporter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="446" y="465"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="Statistics.TableStatistics" project="TableProfiler" 
-    file="/TableProfiler/src/main/java/Statistics/TableStatistics.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="496" y="1096"/>    
+  <class id="8" language="java" name="Enums.SQLTypeMapper" project="TableProfiler" 
+    file="/TableProfiler/src/main/java/Enums/SQLTypeMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="726" y="205"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="Statistics.DatabaseStatistics" project="TableProfiler" 
+  <class id="9" language="java" name="Statistics.DatabaseStatistics" project="TableProfiler" 
     file="/TableProfiler/src/main/java/Statistics/DatabaseStatistics.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="496" y="709"/>    
+    <position height="-1" width="-1" x="819" y="899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="11">    
-    <bendpoint x="1078" y="680"/>    
-    <bendpoint x="1080" y="1094"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
+  <class id="10" language="java" name="Model.MetadataManager" project="TableProfiler" 
+    file="/TableProfiler/src/main/java/Model/MetadataManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="448" y="675"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="Statistics.TableStatistics" project="TableProfiler" 
+    file="/TableProfiler/src/main/java/Statistics/TableStatistics.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="300" width="229" x="719" y="1055"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <dependency id="12">    
-    <bendpoint x="722" y="852"/>    
+    <bendpoint x="776" y="718"/>    
     <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
-  <association id="13">    
-    <bendpoint x="238" y="560"/>    
-    <bendpoint x="173" y="575"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="14" name="metadataList">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="15" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="16">    
-    <bendpoint x="162" y="1209"/>    
-    <bendpoint x="162" y="1364"/>    
-    <bendpoint x="788" y="1366"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
+  <dependency id="13">    
+    <bendpoint x="778" y="717"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="18">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="19" name="databaseStatistics">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="21">    
+  <association id="14">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="22" name="databaseStats">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="23" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+      <attribute id="15" name="databaseStatistics"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="17">    
+    <bendpoint x="776" y="717"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="19">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="20" name="reporter"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="23" name="metaManager"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="25">    
+    <bendpoint x="776" y="721"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="26">    
+    <bendpoint x="662" y="337"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="27">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="28" name="metadataList"/>      
+      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="31">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="32" name="databaseStats"/>      
+      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

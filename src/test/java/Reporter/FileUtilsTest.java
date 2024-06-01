@@ -16,7 +16,7 @@ public class FileUtilsTest {
     @Test
     public void testWriteToFile() {
         String metadata = "Test metadata";
-        String filePath = "test.txt";
+        String filePath = "JUnitTests\test.txt";
 
         Reporter.writeToFile( filePath);
 
