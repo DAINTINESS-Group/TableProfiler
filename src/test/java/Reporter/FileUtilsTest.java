@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import Repoter.FileUtils;
+import Reporter.Reporter;
 
 public class FileUtilsTest {
 
@@ -18,7 +18,7 @@ public class FileUtilsTest {
         String metadata = "Test metadata";
         String filePath = "test.txt";
 
-        FileUtils.writeToFile(metadata, filePath);
+        Reporter.writeToFile( filePath);
 
         // Now let's try to read the file and check if the content matches the metadata
         try {

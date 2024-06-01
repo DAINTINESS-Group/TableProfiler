@@ -3,67 +3,77 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <package id="1" language="java" name="Model" project="TableProfiler" file="/TableProfiler/src/main/java/Model" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="344" y="176"/>    
+    <position height="-1" width="-1" x="490" y="234"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <package id="2" language="java" name="Repoter" project="TableProfiler" file="/TableProfiler/src/main/java/Repoter" 
+  <package id="2" language="java" name="Reporter" project="TableProfiler" file="/TableProfiler/src/main/java/Reporter" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="173" y="260"/>    
+    <position height="-1" width="-1" x="490" y="153"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <package id="3" language="java" name="Statistics" project="TableProfiler" 
     file="/TableProfiler/src/main/java/Statistics" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="268" y="326"/>    
+    <position height="-1" width="-1" x="618" y="303"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <package id="4" language="java" name="Enums" project="TableProfiler" file="/TableProfiler/src/main/java/Enums" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="356" y="443"/>    
+    <position height="-1" width="-1" x="490" y="366"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <package id="5" language="java" name="App" project="TableProfiler" file="/TableProfiler/src/main/java/App" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="337" y="60"/>    
+    <position height="-1" width="-1" x="490" y="59"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <package id="6" language="java" name="DatabaseTasks" project="TableProfiler" 
     file="/TableProfiler/src/main/java/DatabaseTasks" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="431" y="329"/>    
+    <position height="-1" width="-1" x="341" y="308"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <dependency id="7">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="8">    
-    <bendpoint x="491" y="63"/>    
-    <bendpoint x="490" y="447"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="9">    
+    <bendpoint x="618" y="368"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="10">    
+  <dependency id="8">    
+    <bendpoint x="618" y="240"/>    
     <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="9">    
+    <bendpoint x="683" y="64"/>    
+    <bendpoint x="681" y="368"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="10">    
+    <bendpoint x="682" y="158"/>    
+    <bendpoint x="681" y="369"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="11">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="12">    
+    <bendpoint x="340" y="371"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="13">    
+    <bendpoint x="341" y="239"/>    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="1"/>    
+  <dependency id="14">    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
+  <dependency id="15">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

@@ -5,7 +5,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Enums.MetadataType;
-import Model.MetadataManager;
+import Reporter.Reporter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +25,8 @@ public class MainApp extends JFrame {
     private JTextField tableNameField;
     private JTextField schemaNameField;
     private final Map<MetadataType, JCheckBox> checkboxMap = new HashMap<>();
-    MetadataManager metaManager;
+    private Reporter reporter;
+    
 
     private JPanel contentPane;
 
@@ -47,9 +49,6 @@ public class MainApp extends JFrame {
 
         JPanel inputPanel = createInputPanel();
         contentPane.add(inputPanel);
-
-//        JPanel filePanel = createFilePanel();
-//        contentPane.add(filePanel);
         
         JPanel checkboxPanel = createCheckboxPanel();
         contentPane.add(checkboxPanel);
@@ -116,12 +115,12 @@ public class MainApp extends JFrame {
         copyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (metaManager == null) {
+                if (reporter.isMetadataManagerEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please fetch the metadata first.", "Error", JOptionPane.ERROR_MESSAGE);
                     return; // Exit the method early
                 }
                 
-                String metadataString = metaManager.toString();
+                String metadataString = reporter.getMetadataManagerToString();
                 if (metadataString == null) {
                     JOptionPane.showMessageDialog(null, "Metadata is null. Please fetch the metadata first.", "Error", JOptionPane.ERROR_MESSAGE);
                     return; // Exit the method early
@@ -139,7 +138,7 @@ public class MainApp extends JFrame {
                     File fileToSave = fileChooser.getSelectedFile();
                     String filePath = fileToSave.getAbsolutePath();
 
-                    metaManager.writeToFile(metadataString, filePath);
+                    reporter.writeToFile(filePath);
 					JOptionPane.showMessageDialog(null, "Metadata copied to file successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
@@ -175,7 +174,7 @@ public class MainApp extends JFrame {
         String tableName = tableNameField.getText();
         String schemaName = schemaNameField.getText();
 
-        metaManager = new MetadataManager();
+        //metaManager = new MetadataManager();
 
         // Create a list of selected metadata types
         ArrayList<MetadataType> tableTypes =  new ArrayList<MetadataType>();
@@ -186,9 +185,9 @@ public class MainApp extends JFrame {
                 tableTypes.add(type);
             }
         }
-
+        reporter = new Reporter(ip, username, password, tableTypes, schemaName, tableName);
         // Create metadata
-        metaManager.createMetadata(ip, schemaName, username, password, tableTypes, schemaName, tableName);
+        //metaManager.createMetadata(ip, schemaName, username, password, tableTypes, schemaName, tableName);
 
         // Show metadata dialog
         showMetadataDialog();
@@ -199,7 +198,7 @@ public class MainApp extends JFrame {
     private void showMetadataDialog() throws SQLException {
         JFrame dialogFrame = new JFrame("Metadata Results");
         dialogFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        JTextArea textArea = new JTextArea(metaManager.toString());
+        JTextArea textArea = new JTextArea(reporter.getMetadataManagerToString());
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         dialogFrame.getContentPane().add(scrollPane);

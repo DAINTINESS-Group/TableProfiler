@@ -2,7 +2,7 @@ package Model;
 
 import DatabaseTasks.DataManager;
 import Enums.MetadataType;
-import Repoter.FileUtils;
+//import Repoter.FileUtils;
 import Statistics.DatabaseStatistics;
 import Statistics.TableStatistics;
 import java.sql.ResultSet;
@@ -170,8 +170,8 @@ public class MetadataManager {
 //		}
 //	}
 	
-	public void writeToFile(String metadata, String filePath) {
-		FileUtils.writeToFile(metadata, filePath);
-	}
+//	public void writeToFile(String metadata, String filePath) {
+//		FileUtils.writeToFile(metadata, filePath);
+//	}
 
 }

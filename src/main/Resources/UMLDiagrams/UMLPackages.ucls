@@ -6,7 +6,7 @@
     <position height="-1" width="-1" x="344" y="176"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <package id="2" language="java" name="Repoter" project="TableProfiler" file="/TableProfiler/src/main/java/Repoter" 
+  <package id="2" language="java" name="Reporter" project="TableProfiler" file="/TableProfiler/src/main/java/Reporter" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="173" y="260"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
@@ -32,7 +32,7 @@
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <dependency id="7">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="8">    
@@ -42,28 +42,20 @@
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="9">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
   <dependency id="10">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="11">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="14">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
