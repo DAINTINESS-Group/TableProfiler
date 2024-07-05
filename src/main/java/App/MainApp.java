@@ -10,7 +10,7 @@ import Reporter.Reporter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+//import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -135,10 +135,10 @@ public class MainApp extends JFrame {
                 int userSelection = fileChooser.showSaveDialog(MainApp.this);
 
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
-                    File fileToSave = fileChooser.getSelectedFile();
-                    String filePath = fileToSave.getAbsolutePath();
+                    //File fileToSave = fileChooser.getSelectedFile();
+                    //String filePath = fileToSave.getAbsolutePath();
 
-                    reporter.writeToFile(filePath);
+                    //reporter.writeToFile(filePath);
 					JOptionPane.showMessageDialog(null, "Metadata copied to file successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             }

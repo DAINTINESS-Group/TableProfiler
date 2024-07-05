@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import Reporter.Reporter;
 
 public class FileUtilsTest {
 
