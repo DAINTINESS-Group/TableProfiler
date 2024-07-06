@@ -89,6 +89,6 @@ public class TableStatistics {
 	
 	@Override
 	public String toString() {
-		return "The Table :"+tableName+" has :"+columns+"  columns,\t"+primary_keys+" primary keys, \t"+exported_keys+" exported keys,\t"+imported_keys+" imported keys"+ ", \t"+ indxs+" indexes, \t"+colPrvs+" column privileges, \t"+tblPrvs+" table privileges.";
+		return "The Table "+tableName+" has :"+columns+"  columns,\t"+primary_keys+" primary keys, \t"+exported_keys+" exported keys,\t"+imported_keys+" imported keys"+ ", \t"+ indxs+" indexes, \t"+colPrvs+" column privileges, \t"+tblPrvs+" table privileges.";
 	}	
 }

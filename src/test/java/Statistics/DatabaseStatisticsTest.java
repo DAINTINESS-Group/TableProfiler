@@ -29,7 +29,7 @@ public class DatabaseStatisticsTest {
         TableStatistics tableStats1 = new TableStatistics("Table1", 5, 2, 1, 1, 100, 3, 4);
         databaseStats.addTableStatistics(tableStats1);       
 
-        String expected = "The Table :"+"Table1"+" has :"+5+"  columns,\t"+2+" primary keys, \t"+1+" exported keys,\t"+1+" imported keys"+ ", \t"+ 100+" indexes, \t"+4+" column privileges, \t"+3+" table privileges.\n";
+        String expected = "The Table "+"Table1"+" has :"+5+"  columns,\t"+2+" primary keys, \t"+1+" exported keys,\t"+1+" imported keys"+ ", \t"+ 100+" indexes, \t"+4+" column privileges, \t"+3+" table privileges.\n";
         
         assertEquals(expected, databaseStats.toString());
     }
