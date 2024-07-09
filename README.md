@@ -18,3 +18,8 @@
 
 - Install [**Eclipse**](https://www.eclipse.org/downloads/)
 - Import the project as a Maven project.
+
+#### MySQL Installation Requirements
+ - Install [**MySQL**](https://dev.mysql.com/downloads/workbench/)
+ - Create Schemas from dump file if you dont have one go to folder src/test/resources
+  
