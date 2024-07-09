@@ -1,9 +1,9 @@
 # <div align="center">Table Profiler</div>
 
-Java App that retrives the metadata of a table or the schema from a relational database
+## Java App that retrives the metadata of a table or the schema from a relational database
 
-A Project Assignment 
-Created By George Mitsis
+### A Project Assignment 
+### Created By George Mitsis
 
 ### <div align="center">Setup</div>
 
