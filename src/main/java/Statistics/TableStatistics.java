@@ -26,11 +26,15 @@ public class TableStatistics {
 		this.tableName = tableName;
 	}
 
-	public int getColumns() {
+	public int getColumns() {		
 		return columns;
 	}
 
 	public void setColumns(int columns) {
+		if (columns > 0)
+		{
+			columns = columns - 1;
+		}
 		this.columns = columns;
 	}
 
@@ -39,6 +43,10 @@ public class TableStatistics {
 	}
 
 	public void setPrimary_keys(int primary_keys) {
+		if (primary_keys > 0)
+		{
+			primary_keys = primary_keys - 1;
+		}
 		this.primary_keys = primary_keys;
 	}
 
@@ -47,6 +55,10 @@ public class TableStatistics {
 	}
 
 	public void setExported_keys(int exported_keys) {
+		if (exported_keys > 0)
+		{
+			exported_keys = exported_keys - 1;
+		}
 		this.exported_keys = exported_keys;
 	}
 
@@ -55,6 +67,10 @@ public class TableStatistics {
 	}
 
 	public void setImported_keys(int imported_keys) {
+		if (imported_keys > 0)
+		{
+			imported_keys = imported_keys - 1;
+		}
 		this.imported_keys = imported_keys;
 	}
 	
@@ -63,6 +79,10 @@ public class TableStatistics {
 	}
 
 	public void setIndxs(int indxs) {
+		if (indxs > 0)
+		{
+			indxs = indxs - 1;
+		}
 		this.indxs = indxs;
 	}
 
@@ -75,6 +95,10 @@ public class TableStatistics {
 	}
 
 	public void setColPrvs(int colPrvs) {
+		if (colPrvs > 0)
+		{
+			colPrvs = colPrvs - 1;
+		}
 		this.colPrvs = colPrvs;
 	}
 
@@ -83,6 +107,10 @@ public class TableStatistics {
 	}
 
 	public void setTblPrvs(int tblPrvs) {
+		if (tblPrvs > 0)
+		{
+			tblPrvs = tblPrvs - 1;
+		}
 		this.tblPrvs = tblPrvs;
 	}
 	
